@@ -1,0 +1,934 @@
+/* === Shared colors, typography and design measurements === */
+
+:root {
+  /* Shared design values. Embed layout selectors remain in each HTML file. */
+  --raf-orange: #ff4500;
+  --raf-orange-hover: #d82400;
+  --raf-cta-outline-hover: var(--raf-white);
+  --raf-orange-readable: #d82400;
+  --raf-button-height: 36px;
+  --raf-orange-tint: #ffdad7;
+  --raf-white: #ffffff;
+  --raf-black: #000000;
+  --raf-text: #1c1c1c;
+  --reddit-hover-color: #dee1e3;
+  --reddit-divider-color: var(--reddit-hover-color);
+  --raf-card-background: #f6f9fb;
+  --raf-focus: #185abc;
+  --raf-tag-background: var(--raf-card-background);
+  --raf-tag-text: var(--raf-black);
+  --raf-tag-inactive: #dee1e3;
+  --raf-beginner-dot: #65b200;
+  --raf-intermediate-dot: #08a59d;
+  --raf-advanced-dot: var(--raf-orange);
+  --raf-beginner-background: var(--raf-tag-background);
+  --raf-beginner-foreground: var(--raf-tag-text);
+  --raf-intermediate-background: var(--raf-tag-background);
+  --raf-intermediate-foreground: var(--raf-tag-text);
+  --raf-advanced-background: var(--raf-tag-background);
+  --raf-advanced-foreground: var(--raf-tag-text);
+  --raf-white-hover: rgb(255 255 255 / 14%);
+  --raf-white-hover-border: rgb(255 255 255 / 80%);
+  --raf-font-sans: "Reddit Sans", "Lora", Arial, sans-serif;
+  --raf-font-display: "Reddit Display", "Roboto", Arial, sans-serif;
+  --raf-reading-width: 700px;
+  --raf-wide-width: 1280px;
+  --raf-content-gap: 40px;
+  --raf-band-padding: 40px;
+  --raf-hero-gutter-desktop: 80px;
+  --raf-hero-gutter-tablet: 40px;
+  --raf-hero-gutter-mobile: 24px;
+  --raf-page-gutter: 24px;
+  --raf-action-gap: 12px;
+  --raf-card-content-gap: 16px;
+  --raf-card-padding: 16px;
+  --raf-section-gap-mobile: 40px;
+  --raf-home-gutter-mobile: 15px;
+  --raf-home-gutter-tablet: 30px;
+  --raf-heading-gap: 4px;
+  --raf-motion-duration: 160ms;
+  --raf-card-radius: 4px;
+  --reddit-hover-radius: var(--raf-card-radius);
+  --raf-section-gap: 80px;
+  --raf-content-edge-gap: 40px;
+  --raf-description-gap: 24px;
+  --raf-view-all-gap: 20px;
+  --reddit-divider-gap: 12px;
+}
+
+/* === Native media and catalog cards === */
+
+.mediablock__summary {
+  /* Existing font mapping displays Reddit Sans. */
+  font-family: 'Lora', sans-serif;
+}
+
+/* Rounded surfaces for other catalog layouts */
+.catalogcards__list--scroll .catalogcard--activity,
+.catalogcards__list--scroll .catalogcard__container,
+.catalogcards__list--stack .catalogcard--tabloid,
+.catalogcards__list--stack.catalogcards__list--list .catalogcard--list {
+  border-radius: var(--reddit-hover-radius);
+}
+
+/* Media list cards: no outer vertical spacing */
+.mediablocklist__item:not(.mediablocklist__item--grid) {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  border-top: 1px solid var(--reddit-divider-color);
+}
+
+.mediablocklist__item:not(.mediablocklist__item--grid):last-child {
+  border-bottom: 1px solid var(--reddit-divider-color);
+}
+
+/* Media list cards: shared corner radius */
+.mediablocklist__item .mediablock {
+  position: relative;
+  cursor: pointer;
+  transition: background-color var(--raf-motion-duration) ease;
+  box-sizing: border-box;
+  padding: var(--raf-card-padding) !important;
+  border-radius: var(--raf-card-radius) !important;
+}
+
+/* Keep dividers on the outer list item */
+.mediablocklist__item .mediablock--row {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.mediablocklist__item .mediablock:has(:focus-visible) {
+  background-color: var(--reddit-hover-color);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .mediablocklist__item .mediablock:hover {
+    background-color: var(--reddit-hover-color);
+  }
+}
+
+/* Extend the title link across the card */
+.mediablocklist__item .mediablock .mediablock__title .mediablock__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}
+
+/* Scroll catalog 1x cards */
+.catalogcards__list--scroll .catalogcards__listitem--1x .catalogcard--activity {
+  display: block;
+  box-sizing: border-box;
+  padding: var(--raf-card-padding) !important;
+  transition: background-color var(--raf-motion-duration) ease !important;
+}
+
+.catalogcards__list--scroll .catalogcards__listitem--1x .catalogcard--activity:focus-visible {
+  background-color: var(--reddit-hover-color) !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .catalogcards__list--scroll .catalogcards__listitem--1x .catalogcard--activity:hover {
+    background-color: var(--reddit-hover-color) !important;
+  }
+}
+
+/* Scroll catalog 2x, 3x and 4x tile cards */
+.catalogcards__list--scroll
+  :is(
+    .catalogcards__listitem--2x,
+    .catalogcards__listitem--3x,
+    .catalogcards__listitem--4x
+  )
+  .catalogcard--activity {
+  box-sizing: border-box;
+  padding: var(--raf-card-padding) !important;
+  background-color: transparent !important;
+}
+
+.catalogcards__list--scroll
+  :is(
+    .catalogcards__listitem--2x,
+    .catalogcards__listitem--3x,
+    .catalogcards__listitem--4x
+  )
+  .catalogcard__container {
+  transition: background-color var(--raf-motion-duration) ease !important;
+}
+
+/* Color the text panel as well as its parent container */
+.catalogcards__list--scroll
+  :is(
+    .catalogcards__listitem--2x,
+    .catalogcards__listitem--3x,
+    .catalogcards__listitem--4x
+  )
+  .catalogcard__content {
+  border-radius: 0 0 var(--reddit-hover-radius) var(--reddit-hover-radius);
+  transition: background-color var(--raf-motion-duration) ease !important;
+}
+
+.catalogcards__list--scroll
+  :is(
+    .catalogcards__listitem--2x,
+    .catalogcards__listitem--3x,
+    .catalogcards__listitem--4x
+  )
+  .catalogcard--activity:focus-visible
+  :is(.catalogcard__container, .catalogcard__content) {
+  background-color: var(--reddit-hover-color) !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .catalogcards__list--scroll
+  :is(
+    .catalogcards__listitem--2x,
+    .catalogcards__listitem--3x,
+    .catalogcards__listitem--4x
+  )
+  .catalogcard--activity:hover
+  :is(.catalogcard__container, .catalogcard__content) {
+    background-color: var(--reddit-hover-color) !important;
+  }
+}
+
+/* Stacked catalog 3x and 4x tile cards */
+.catalogcards__list--stack
+  > :is(.catalogcards__listitem--3x, .catalogcards__listitem--4x)
+  > .catalogcard--activity {
+  background-color: transparent !important;
+  box-sizing: border-box;
+  padding: var(--raf-card-padding) !important;
+}
+
+.catalogcards__list--stack
+  > :is(.catalogcards__listitem--3x, .catalogcards__listitem--4x)
+  > .catalogcard--activity
+  > .catalogcard__container {
+  border-radius: var(--reddit-hover-radius);
+  transition: background-color var(--raf-motion-duration) ease !important;
+}
+
+.catalogcards__list--stack
+  > :is(.catalogcards__listitem--3x, .catalogcards__listitem--4x)
+  > .catalogcard--activity
+  > .catalogcard__container
+  > .catalogcard__content {
+  border-radius: 0 0 var(--reddit-hover-radius) var(--reddit-hover-radius);
+  transition: background-color var(--raf-motion-duration) ease !important;
+}
+
+.catalogcards__list--stack
+  > :is(.catalogcards__listitem--3x, .catalogcards__listitem--4x)
+  > .catalogcard--activity:focus-visible
+  > .catalogcard__container,
+.catalogcards__list--stack
+  > :is(.catalogcards__listitem--3x, .catalogcards__listitem--4x)
+  > .catalogcard--activity:focus-visible
+  > .catalogcard__container
+  > .catalogcard__content {
+  background-color: var(--reddit-hover-color) !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .catalogcards__list--stack
+  > :is(.catalogcards__listitem--3x, .catalogcards__listitem--4x)
+  > .catalogcard--activity:hover
+  > .catalogcard__container,
+.catalogcards__list--stack
+  > :is(.catalogcards__listitem--3x, .catalogcards__listitem--4x)
+  > .catalogcard--activity:hover
+  > .catalogcard__container
+  > .catalogcard__content {
+    background-color: var(--reddit-hover-color) !important;
+  }
+}
+
+/* Stacked tabloid cards */
+.catalogcards__list--stack .catalogcards__listitem--tabloid .catalogcard--tabloid {
+  display: block;
+  box-sizing: border-box;
+  padding: var(--raf-card-padding) !important;
+  transition: background-color var(--raf-motion-duration) ease !important;
+}
+
+.catalogcards__list--stack .catalogcards__listitem--tabloid .catalogcard--tabloid:focus-visible {
+  background-color: var(--reddit-hover-color) !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .catalogcards__list--stack .catalogcards__listitem--tabloid .catalogcard--tabloid:hover {
+    background-color: var(--reddit-hover-color) !important;
+  }
+}
+
+/* Stacked list cards */
+.catalogcards__list--stack.catalogcards__list--list .catalogcards__listitem--list {
+  padding-top: var(--reddit-divider-gap);
+  padding-bottom: var(--reddit-divider-gap);
+  border-color: var(--reddit-divider-color);
+}
+
+.catalogcards__list--stack.catalogcards__list--list .catalogcard--list {
+  display: block;
+  box-sizing: border-box;
+  padding: var(--raf-card-padding) !important;
+  transition: background-color var(--raf-motion-duration) ease !important;
+}
+
+.catalogcards__list--stack.catalogcards__list--list
+  .catalogcards__listitem--list:has(:focus-visible)
+  .catalogcard--list {
+  background-color: var(--reddit-hover-color) !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .catalogcards__list--stack.catalogcards__list--list
+  .catalogcards__listitem--list:hover
+  .catalogcard--list {
+    background-color: var(--reddit-hover-color) !important;
+  }
+}
+
+/* Remove underlines throughout cards with grey hover surfaces */
+:is(
+  .mediablocklist__item .mediablock,
+  .catalogcards__list--scroll .catalogcards__listitem--1x .catalogcard--activity,
+  .catalogcards__list--scroll .catalogcards__listitem--2x .catalogcard--activity,
+  .catalogcards__list--scroll .catalogcards__listitem--3x .catalogcard--activity,
+  .catalogcards__list--scroll .catalogcards__listitem--4x .catalogcard--activity,
+  .catalogcards__list--stack .catalogcards__listitem--3x .catalogcard--3x,
+  .catalogcards__list--stack .catalogcards__listitem--4x .catalogcard--4x,
+  .catalogcards__list--stack .catalogcards__listitem--tabloid .catalogcard--tabloid,
+  .catalogcards__list--stack.catalogcards__list--list .catalogcard--list
+),
+:is(
+  .mediablocklist__item .mediablock,
+  .catalogcards__list--scroll .catalogcards__listitem--1x .catalogcard--activity,
+  .catalogcards__list--scroll .catalogcards__listitem--2x .catalogcard--activity,
+  .catalogcards__list--scroll .catalogcards__listitem--3x .catalogcard--activity,
+  .catalogcards__list--scroll .catalogcards__listitem--4x .catalogcard--activity,
+  .catalogcards__list--stack .catalogcards__listitem--3x .catalogcard--3x,
+  .catalogcards__list--stack .catalogcards__listitem--4x .catalogcard--4x,
+  .catalogcards__list--stack .catalogcards__listitem--tabloid .catalogcard--tabloid,
+  .catalogcards__list--stack.catalogcards__list--list .catalogcard--list
+) * {
+  text-decoration: none !important;
+}
+
+/* Keep embedded controls above the stretched media-card link. */
+.mediablocklist__item .mediablock :is(button, input, select, textarea, a:not(.mediablock__link)) {
+  position: relative;
+  z-index: 11;
+}
+
+/* Anchor topic-list status flags to the thumbnail, not an inline link box. */
+.mediablocklist__item .mediablock .mediablock__media > a {
+  display: block;
+  position: relative;
+}
+
+.mediablocklist__item .mediablock .mediablock__media > a > .catalogflag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: auto;
+}
+
+/* Extend tile hover backgrounds over the shared 16px card inset. */
+.catalogcards__list--scroll
+  :is(.catalogcards__listitem--2x, .catalogcards__listitem--3x, .catalogcards__listitem--4x)
+  .catalogcard--activity:focus-visible,
+.catalogcards__list--stack
+  > :is(.catalogcards__listitem--3x, .catalogcards__listitem--4x)
+  > .catalogcard--activity:focus-visible {
+  background-color: var(--reddit-hover-color) !important;
+  border-radius: var(--reddit-hover-radius);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  /* Extend tile hover backgrounds over the shared 16px card inset. */
+.catalogcards__list--scroll
+  :is(.catalogcards__listitem--2x, .catalogcards__listitem--3x, .catalogcards__listitem--4x)
+  .catalogcard--activity:hover,
+.catalogcards__list--stack
+  > :is(.catalogcards__listitem--3x, .catalogcards__listitem--4x)
+  > .catalogcard--activity:hover {
+    background-color: var(--reddit-hover-color) !important;
+    border-radius: var(--reddit-hover-radius);
+  }
+}
+
+/* Shared native card corners, including responsive inner surfaces. */
+.catalogcards__list .catalogcard--activity,
+.catalogcards__list .catalogcard__container--activity {
+  border-radius: var(--raf-card-radius) !important;
+}
+
+.catalogcards__list .catalogcard__content--activity {
+  border-radius: 0 0 var(--raf-card-radius) var(--raf-card-radius) !important;
+}
+
+/* === Platform navigation === */
+
+/*
+ * Stable desktop navigation labels.
+ * "Roboto" maps to the uploaded Reddit Display ExtraBold file.
+ */
+.appnav--text .appnav__listitem--text {
+  flex: 0 0 auto;
+  min-width: max-content;
+}
+
+.appnav--text .appnav__link--text {
+  box-sizing: border-box;
+  width: max-content;
+  min-width: max-content;
+  white-space: nowrap;
+}
+
+/* Safari typography for the logged-out button */
+.appnav--text button.appnav__link--text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  font-synthesis: none;
+}
+
+/* === Activity metadata and difficulty bars === */
+
+/* Activity metadata rows */
+.activitycard__meta,
+.catalogcard__meta,
+.activitymeta--heading {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.activitycard__meta .activitymeta__item--type,
+.catalogcard__meta .activitymeta__item--type {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Stacked difficulty bars: updated Figma 759:2483. */
+.activitymeta .activitymeta__item--level {
+  /* Roboto is the platform's uploaded Reddit Display font mapping. */
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  font-family: 'Roboto', 'Reddit Display', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  box-sizing: border-box !important;
+  height: 24px !important;
+  padding: 4px 6px 4px 4px !important;
+  border-radius: 4px !important;
+  gap: 6px;
+  line-height: 16px !important;
+  --raf-level-dot: var(--raf-beginner-dot);
+  --raf-level-bars: 0 -4.5px 0 var(--raf-tag-inactive), 0 -9px 0 var(--raf-tag-inactive);
+}
+
+.activitymeta .activitymeta__item--level::before {
+  content: "";
+  width: 14px !important;
+  height: 3px !important;
+  flex: 0 0 14px !important;
+  align-self: flex-end;
+  margin: 0 0 2px !important;
+  border-radius: 4px !important;
+  background-color: var(--raf-level-dot) !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+  box-shadow: var(--raf-level-bars) !important;
+}
+
+.activitymeta .activitymeta__item--beginner {
+  background-color: var(--raf-beginner-background);
+  color: var(--raf-beginner-foreground);
+  --raf-level-dot: var(--raf-beginner-dot);
+  --raf-level-bars: 0 -4.5px 0 var(--raf-tag-inactive), 0 -9px 0 var(--raf-tag-inactive);
+}
+
+.activitymeta .activitymeta__item--intermediate {
+  background-color: var(--raf-intermediate-background);
+  color: var(--raf-intermediate-foreground);
+  --raf-level-dot: var(--raf-intermediate-dot);
+  --raf-level-bars: 0 -4.5px 0 var(--raf-level-dot), 0 -9px 0 var(--raf-tag-inactive);
+}
+
+.activitymeta .activitymeta__item--advanced {
+  background-color: var(--raf-advanced-background);
+  color: var(--raf-advanced-foreground);
+  --raf-level-dot: var(--raf-advanced-dot);
+  --raf-level-bars: 0 -4.5px 0 var(--raf-level-dot), 0 -9px 0 var(--raf-level-dot);
+}
+
+/* === Follow, login and platform action controls === */
+
+/* Follow button tooltip removal */
+.categoryheader__actions .followbutton + .hint--a11y {
+  display: none;
+}
+
+/* Shared sizing for the native Follow control we customize. */
+.categoryheader__actions .button.followbutton {
+  box-sizing: border-box;
+  min-height: var(--raf-button-height) !important;
+  height: auto !important;
+  line-height: 18px !important;
+  padding-block: calc((var(--raf-button-height) - 20px) / 2) !important;
+}
+
+/* Both native Follow states retain the same brand treatment. */
+.categoryheader__actions .button.followbutton,
+.categoryheader__actions .button.followbutton.followbutton--following {
+  background-color: var(--raf-orange) !important;
+  border: 1px solid var(--raf-orange) !important;
+  border-radius: 100px !important;
+  color: var(--raf-white) !important;
+  text-decoration: none !important;
+}
+
+.categoryheader__actions .followbutton svg {
+  color: inherit !important;
+}
+
+.categoryheader__actions .button.followbutton:is(:hover, :active),
+.categoryheader__actions .button.followbutton.followbutton--following:is(:hover, :active) {
+  background-color: var(--raf-orange-hover) !important;
+  border-color: var(--raf-orange-hover) !important;
+  color: var(--raf-white) !important;
+}
+
+.categoryheader__actions .followbutton:focus-visible {
+  outline: 2px solid var(--raf-text) !important;
+  outline-offset: 3px;
+}
+
+/* Button transitions */
+.categoryheader__actions .followbutton,
+.catalogcard--event .catalogcard__actionsbutton,
+.activityheading__quickstart .button,
+.session__actions--index .session__actionsbutton {
+  transition: background-color var(--raf-motion-duration) ease,
+    border-color var(--raf-motion-duration) ease,
+    color var(--raf-motion-duration) ease !important;
+}
+
+/* Follow, quickstart and session enroll button hover */
+.categoryheader__actions .followbutton:is(:hover, :focus, :focus-visible),
+.activityheading__quickstart .button:is(:hover, :focus, :focus-visible),
+.session__actions--index .session__actionsbutton:is(:hover, :focus, :focus-visible) {
+  background-color: var(--raf-orange-hover) !important;
+  border-color: var(--raf-orange-hover) !important;
+  color: var(--raf-white) !important;
+}
+
+.categoryheader__actions .followbutton:is(:hover, :focus, :focus-visible) svg,
+.activityheading__quickstart .button:is(:hover, :focus, :focus-visible) svg {
+  color: var(--raf-white) !important;
+}
+
+/* Event card action button hover */
+.catalogcard--event .catalogcard__actionsbutton:is(:hover, :focus, :focus-visible) {
+  background-color: var(--reddit-hover-color) !important;
+  border-color: currentColor !important;
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+/* Platform header Log In: applies on every page, independent of embed markers. */
+.appheader .button.button--appheader[data-dialog-id="public-login-dialog"] {
+  transition: background-color var(--raf-motion-duration) ease, border-color var(--raf-motion-duration) ease;
+}
+
+.appheader .button.button--appheader[data-dialog-id="public-login-dialog"]:focus-visible {
+  background-color: var(--raf-orange-hover) !important;
+  border-color: var(--raf-orange-hover) !important;
+  color: var(--raf-white) !important;
+  outline: 2px solid var(--raf-text) !important;
+  outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .appheader .button.button--appheader[data-dialog-id="public-login-dialog"]:hover {
+    background-color: var(--raf-orange-hover) !important;
+    border-color: var(--raf-orange-hover) !important;
+    color: var(--raf-white) !important;
+  }
+}
+
+/* Keep both Follow states on one line, while allowing the action area to wrap. */
+.categoryheader__actions .button.followbutton {
+  white-space: nowrap !important;
+  flex-shrink: 0;
+}
+
+.categoryheader__actions {
+  flex-wrap: wrap;
+}
+
+/* === Platform wrappers for custom landing pages === */
+
+/* Custom landing-page containers. Match embed markers, not activity IDs,
+   so these rules work on the new Paths and the previous Page templates. */
+.coursepage__contentmain:has(.raf-embed, #raf-certification, #raf-faq-page) > .page__header,
+.coursepage__contentmain.course:has(.raf-embed, #raf-certification, #raf-faq-page) > .course__headercontainer {
+  display: none !important;
+}
+
+.coursepage:has(.raf-embed, #raf-certification, #raf-faq-page),
+.coursepage__content:has(.raf-embed, #raf-certification, #raf-faq-page),
+.coursepage__contentmain:has(.raf-embed, #raf-certification, #raf-faq-page),
+.course__contentcontainer:has(.raf-embed, #raf-certification, #raf-faq-page),
+.course__content:has(.raf-embed, #raf-certification, #raf-faq-page),
+.course__description.postcontent:has(> :is(.raf-embed, #raf-certification, #raf-faq-page)),
+.page__courses:has(.raf-embed, #raf-certification, #raf-faq-page),
+.pgcomponent:has(.raf-embed, #raf-certification, #raf-faq-page),
+.pgpost:has(.raf-embed, #raf-certification, #raf-faq-page) {
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.main--student:has(.raf-embed, #raf-certification, #raf-faq-page) {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* These paths serve as landing pages, not learning activity lists. */
+.course__content:has(> .course__description > :is(.raf-embed, #raf-certification, #raf-faq-page)) > .noresults,
+.course__content:has(> .course__description > :is(.raf-embed, #raf-certification, #raf-faq-page)) > .course__actions {
+  display: none !important;
+}
+
+/* Editor-generated empty paragraphs outside the custom content. */
+.pgpost:has(.raf-embed, #raf-certification, #raf-faq-page) > p:empty,
+.course__description.postcontent:has(> :is(.raf-embed, #raf-certification, #raf-faq-page)) > p:empty {
+  display: none !important;
+}
+
+/* === Learning-path accordion headings === */
+
+/* Learning-path accordion headings: explicit brand text color also on iOS.
+   These headings are buttons; don't inherit browser/theme button blue. */
+#course_content button.activitysection__header--pathsection,
+#course_content button.activitysection__header--pathsection:is(:hover, :focus, :active),
+#course_content button.activitysection__header--pathsection .activitysection__name,
+#course_content button.activitysection__header--pathsection .activitysection__note,
+#course_content button.activitysection__header--pathsection .activitysection__toggle,
+#course_content button.activitysection__header--pathsection .activitysection__toggle svg {
+  color: var(--raf-text) !important;
+}
+
+/* === Homepage typography, sections and responsive card layouts === */
+
+/* Homepage section titles */
+#catalog_home_page .catalogcards__heading,
+#catalog_home_page .catalogcards__heading > a,
+#catalog_home_page .catalogcards__htmlcontent > h1,
+#catalog_home_page .catalogcards__htmlcontent > h2 {
+  font-family: var(--raf-font-display) !important;
+  font-size: 48px !important;
+  font-weight: 700 !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0 !important;
+  color: var(--raf-text) !important;
+  text-transform: none !important;
+  margin: 0 !important;
+}
+
+/* Homepage section descriptions */
+#catalog_home_page .catalogcards__description,
+#catalog_home_page .catalogcards__description > p,
+#catalog_home_page .catalogcards__htmlcontent > :is(h1, h2) + :is(div, p) {
+  font-family: var(--raf-font-display) !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0 !important;
+  color: var(--raf-text) !important;
+  margin: var(--raf-heading-gap) 0 0 !important;
+}
+
+#catalog_home_page .catalogcards__description > p {
+  margin: 0 !important;
+}
+
+@media (max-width: 767px) {
+  #catalog_home_page .catalogcards__heading,
+  #catalog_home_page .catalogcards__heading > a,
+  #catalog_home_page .catalogcards__htmlcontent > h1,
+  #catalog_home_page .catalogcards__htmlcontent > h2 {
+    font-size: 36px !important;
+  }
+}
+
+/* Homepage title and embedded-description spacing */
+#catalog_home_page .catalogcards__heading,
+#catalog_home_page .catalogcards__htmlcontent > h1,
+#catalog_home_page .catalogcards__htmlcontent > h2 {
+  padding-bottom: 0 !important;
+}
+
+#catalog_home_page .catalogcards__htmlcontent > :is(h1, h2) + :is(div, p) {
+  margin-top: var(--raf-heading-gap) !important;
+  padding-bottom: var(--raf-card-padding) !important;
+}
+
+/* Homepage HTML hero only: expand to the main area's width while keeping
+   all native catalog sections and the final HTML section constrained. */
+#main:has(#catalog_home_page .raf-home-hero) {
+  container-type: inline-size;
+}
+
+#catalog_home_page > .catalogcards:has(.raf-home-hero) {
+  box-sizing: border-box;
+  width: 100cqw !important;
+  max-width: none !important;
+  margin-inline: calc(50% - 50cqw) !important;
+  margin-top: 0 !important;
+  padding: 0 !important;
+}
+
+#catalog_home_page > .catalogcards:has(.raf-home-hero) > .catalogcards__header {
+  display: none !important;
+}
+
+#catalog_home_page > .catalogcards:has(.raf-home-hero) > .catalogcards__htmlcontent {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Homepage tabloid sections: remove outer margins, preserve card padding. */
+#catalog_home_page .catalogcards__list--stack:has(> .catalogcards__listitem--activity.catalogcards__listitem--tabloid) {
+  row-gap: 0 !important;
+}
+
+#catalog_home_page .catalogcards__list--stack:has(> .catalogcards__listitem--activity.catalogcards__listitem--tabloid) > .catalogcards__listitem--tabloid,
+#catalog_home_page .catalogcards__list--stack:has(> .catalogcards__listitem--activity.catalogcards__listitem--tabloid) > .catalogcards__listitem--tabloid > .catalogcard--tabloid,
+#catalog_home_page .catalogcards__list--stack:has(> .catalogcards__listitem--activity.catalogcards__listitem--tabloid) > .catalogcards__listitem--tabloid > .catalogcard--tabloid > .catalogcard__container--tabloid {
+  margin: 0 !important;
+}
+
+/* No padding outside the hover surface; keep a 16px inset inside each card.
+   Apply the same treatment to accelerator, learning path and certification sections. */
+#catalog_home_page .catalogcards__list--stack:has(> .catalogcards__listitem--activity:is(.catalogcards__listitem--tabloid, .catalogcards__listitem--2x, .catalogcards__listitem--4x)) > .catalogcards__listitem > .catalogcard--activity {
+  box-sizing: border-box;
+  padding: var(--raf-card-padding) !important;
+}
+
+/* Certification and 4-column cards: one hover surface on the outer link only. */
+#catalog_home_page .catalogcards__list--stack:has(> .catalogcards__listitem--activity:is(.catalogcards__listitem--2x, .catalogcards__listitem--4x)) .catalogcard--activity {
+  background: transparent !important;
+  border-radius: var(--raf-card-radius) !important;
+  transition: background-color var(--raf-motion-duration) ease !important;
+}
+
+#catalog_home_page .catalogcards__list--stack:has(> .catalogcards__listitem--activity:is(.catalogcards__listitem--2x, .catalogcards__listitem--4x)) .catalogcard--activity :is(.catalogcard__container,.catalogcard__content) {
+  background: transparent !important;
+  box-shadow: none !important;
+  transition: none !important;
+}
+
+#catalog_home_page .catalogcards__list--stack:has(> .catalogcards__listitem--activity:is(.catalogcards__listitem--2x, .catalogcards__listitem--4x)) .catalogcard--activity:focus-visible {
+  background: var(--reddit-hover-color) !important;
+}
+
+@media (hover:hover) and (pointer:fine) {
+  #catalog_home_page .catalogcards__list--stack:has(> .catalogcards__listitem--activity:is(.catalogcards__listitem--2x, .catalogcards__listitem--4x)) .catalogcard--activity:hover {
+    background: var(--reddit-hover-color) !important;
+  }
+}
+
+#catalog_home_page .catalogcards__list--stack:has(> .catalogcards__listitem--activity:is(.catalogcards__listitem--2x, .catalogcards__listitem--4x)) .catalogcard--activity,
+#catalog_home_page .catalogcards__list--stack:has(> .catalogcards__listitem--activity:is(.catalogcards__listitem--2x, .catalogcards__listitem--4x)) .catalogcard--activity * {
+  text-decoration: none !important;
+}
+
+/* Homepage content wrapper: remove vertical margins only. */
+#catalog_home_page.main__content {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Keep customized homepage cards borderless in responsive Intellum layouts. */
+#catalog_home_page .catalogcards__list--stack:has(> .catalogcards__listitem--activity:is(.catalogcards__listitem--tabloid, .catalogcards__listitem--2x, .catalogcards__listitem--4x)) :is(.catalogcard--activity, .catalogcard__container--activity, .catalogcard__content--activity) {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Homepage rhythm from Figma 939:2526: 80px sections, 40px after hero,
+   24px description-to-cards. Mobile uses the embeds' 40px section rhythm. */
+@media(max-width:767px) {
+  #catalog_home_page {
+    --raf-section-gap: var(--raf-section-gap-mobile);
+  }
+}
+
+#catalog_home_page > .catalogcards:has(.raf-home-hero) {
+  margin-bottom: var(--raf-content-edge-gap) !important;
+}
+
+#catalog_home_page > .catalogcards {
+  margin-bottom: var(--raf-section-gap) !important;
+}
+
+#catalog_home_page > .catalogcards:last-child {
+  margin-bottom: 0 !important;
+}
+
+#catalog_home_page > .catalogcards > .catalogcards__header {
+  margin-bottom: var(--raf-description-gap) !important;
+}
+
+#catalog_home_page .catalogcards__description,
+#catalog_home_page .catalogcards__description > p {
+  padding-bottom: 0 !important;
+}
+
+#catalog_home_page > .catalogcards > .catalogcards__footer {
+  margin: var(--raf-view-all-gap) 0 0 !important;
+}
+
+#catalog_home_page > .catalogcards > .catalogcards__footer:not(:has(a,button)) {
+  display: none;
+}
+
+#catalog_home_page .catalogcards__footerlink {
+  margin-bottom: 0 !important;
+}
+
+#catalog_home_page > .catalogcards:has(.raf-home-learn) > .catalogcards__header {
+  display: none;
+}
+
+#catalog_home_page > .catalogcards:has(.raf-home-learn) > .catalogcards__htmlcontent {
+  margin-block: 0 !important;
+}
+
+/* Supported homepage stacked layouts: tabloid, 2x and 4x activity cards.
+   Match card classes, never section names, IDs, or Topic destinations.
+   Scroll, list, event and unsupported card layouts retain their native layout. */
+#catalog_home_page .catalogcards__list--stack:has(> .catalogcards__listitem--activity:is(.catalogcards__listitem--tabloid, .catalogcards__listitem--2x, .catalogcards__listitem--4x)) {
+  gap: 0 !important;
+  margin-block: 0 !important;
+  padding: 0 !important;
+}
+
+#catalog_home_page .catalogcards__list--stack:has(> .catalogcards__listitem--activity:is(.catalogcards__listitem--tabloid, .catalogcards__listitem--2x, .catalogcards__listitem--4x)) > .catalogcards__listitem {
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#catalog_home_page .catalogcards__list--stack:has(> .catalogcards__listitem--activity:is(.catalogcards__listitem--2x, .catalogcards__listitem--4x)) {
+  display: grid !important;
+  grid-template-columns: minmax(0,1fr);
+}
+
+@media(min-width:480px) {
+  #catalog_home_page .catalogcards__list--stack:has(> .catalogcards__listitem--activity:is(.catalogcards__listitem--2x, .catalogcards__listitem--4x)) {
+    grid-template-columns: repeat(2,minmax(0,1fr)) !important;
+  }
+}
+
+#catalog_home_page .catalogcards__list--stack:has(> .catalogcards__listitem--activity.catalogcards__listitem--tabloid) {
+  display: grid !important;
+  grid-template-columns: minmax(0,1fr);
+}
+
+/* Standard stacked tabloid homepage arrangement: one column below 768px;
+   three columns with a full-width first card from 768px. Section IDs are irrelevant. */
+@media(min-width:768px) {
+  #catalog_home_page .catalogcards__list--stack:has(> .catalogcards__listitem--activity.catalogcards__listitem--tabloid) {
+    grid-template-columns: repeat(3,minmax(0,1fr)) !important;
+  }
+
+  #catalog_home_page .catalogcards__list--stack:has(> .catalogcards__listitem--activity.catalogcards__listitem--tabloid) > .catalogcards__listitem:first-child {
+    grid-column: 1 / -1;
+  }
+
+  #catalog_home_page .catalogcards__list--stack:has(> .catalogcards__listitem--activity.catalogcards__listitem--4x) {
+    grid-template-columns: repeat(4,minmax(0,1fr)) !important;
+  }
+}
+
+/* Match native tablet gutters without changing the approved hero alignment. */
+#catalog_home_page {
+  --raf-home-gutter: var(--raf-home-gutter-mobile);
+}
+
+@media(min-width:768px) and (max-width:991px) {
+  #catalog_home_page {
+    --raf-home-gutter: var(--raf-home-gutter-tablet);
+  }
+}
+
+@media(min-width:992px) {
+  #catalog_home_page {
+    --raf-home-gutter: 0px;
+  }
+}
+
+#catalog_home_page > .catalogcards:not(:has(.raf-home-hero)) > :is(.catalogcards__header,.catalogcards__footer) {
+  padding-inline: var(--raf-home-gutter) !important;
+}
+
+#catalog_home_page > .catalogcards:not(:has(.raf-home-hero)) > :is(.catalogcards__list--stack,.catalogcards__htmlcontent) {
+  margin-inline: var(--raf-home-gutter) !important;
+}
+
+/* Align card images with section headings; let the hover extend into the gutter.
+   Mobile inset is capped at its 15px gutter to avoid horizontal overflow. */
+#catalog_home_page {
+  --raf-home-card-inset: var(--raf-card-padding);
+}
+
+@media(max-width:767px) {
+  #catalog_home_page {
+    --raf-home-card-inset: min(var(--raf-card-padding), var(--raf-home-gutter-mobile));
+  }
+}
+
+#catalog_home_page > .catalogcards:not(:has(.raf-home-hero)) > .catalogcards__list--stack:has(> .catalogcards__listitem--activity:is(.catalogcards__listitem--tabloid, .catalogcards__listitem--2x, .catalogcards__listitem--4x)) {
+  width: auto !important;
+  max-width: none !important;
+  margin-inline: calc(var(--raf-home-gutter) - var(--raf-home-card-inset)) !important;
+}
+
+#catalog_home_page .catalogcards__list--stack:has(> .catalogcards__listitem--activity:is(.catalogcards__listitem--tabloid, .catalogcards__listitem--2x, .catalogcards__listitem--4x)) > .catalogcards__listitem > .catalogcard--activity {
+  padding-inline: var(--raf-home-card-inset) !important;
+}
+
+/* Native tile text panels share their image's left edge. */
+#catalog_home_page .catalogcards__list--stack:has(> .catalogcards__listitem--activity:is(.catalogcards__listitem--2x, .catalogcards__listitem--4x)) .catalogcard__content--activity {
+  padding-inline: 0 !important;
+}
+
+/* Compensate for the final 16px card inset only when no View all follows.
+   This yields 80px desktop / 40px mobile from visible card content. */
+#catalog_home_page > .catalogcards:has(> .catalogcards__list--stack > .catalogcards__listitem--activity:is(.catalogcards__listitem--tabloid, .catalogcards__listitem--2x, .catalogcards__listitem--4x)):not(:has(> .catalogcards__footer a, > .catalogcards__footer button)):not(:last-child) {
+  margin-bottom: calc(var(--raf-section-gap) - var(--raf-card-padding)) !important;
+}
+
+/* Remove the duplicated native text-panel inset; retain outer card padding. */
+#catalog_home_page .catalogcards__list--stack:has(> .catalogcards__listitem--activity.catalogcards__listitem--4x) .catalogcard__content--activity {
+  padding-bottom: 0 !important;
+}

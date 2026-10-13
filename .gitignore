@@ -1,0 +1,22 @@
+# Superseded snippets, notes, reports and delivery packages kept locally.
+/local-archive/
+
+# Generated delivery packages.
+*.zip
+
+# Operating-system and editor metadata.
+.DS_Store
+._*
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Local credentials and environment configuration.
+.env
+.env.*
+!.env.example
+
+# Temporary output and dependencies.
+/tmp/
+/node_modules/

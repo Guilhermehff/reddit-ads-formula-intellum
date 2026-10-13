@@ -1,0 +1,122 @@
+<style>
+.raf-home-hero {
+  --raf-sans:var(--raf-font-sans);
+  --raf-display:var(--raf-font-display);
+  container-type: inline-size;
+  width: 100%;
+  max-width: none;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: var(--raf-white);
+  background: var(--raf-black);
+  text-align: left;
+  overflow-wrap: break-word;
+}
+.raf-home-hero *,
+.raf-home-hero *::before,
+.raf-home-hero *::after { box-sizing: border-box; }
+.raf-home-hero .raf-home-hero-band {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 350px;
+  margin: 0 !important;
+  padding:var(--raf-band-padding) var(--raf-hero-gutter-desktop) !important;
+}
+.raf-home-hero .raf-home-hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0,560px) 480px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  width: 100%;
+  max-width:var(--raf-wide-width);
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+.raf-home-hero .raf-home-hero-copy { margin-bottom:0 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.raf-home-hero .raf-home-hero-title {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: var(--raf-display) !important;
+  font-size: 48px !important;
+  font-weight: 700 !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  color: var(--raf-white) !important;
+}
+.raf-home-hero .raf-home-hero-image {
+  display: block;
+  width: 480px;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius:var(--raf-card-radius);
+  object-fit: cover;
+  background-color: var(--raf-white);
+  background-image: conic-gradient(var(--raf-orange-tint) 25%, transparent 0 50%, var(--raf-orange-tint) 0 75%, transparent 0);
+  background-size: 60px 60px;
+}
+.raf-home-hero p:empty,
+.raf-home-hero > br,
+.raf-home-hero .raf-home-hero-inner > br,
+.raf-home-hero .raf-home-hero-copy > br { display: none !important; }
+@media (min-width:1200px) {
+  .raf-home-hero .raf-home-hero-band {
+    min-height: 27.09375vw;
+    min-height: 27.09375cqw;
+  }
+}
+@media (max-width:1199px) {
+  .raf-home-hero .raf-home-hero-band { padding-inline:var(--raf-hero-gutter-tablet) !important; }
+  .raf-home-hero .raf-home-hero-inner { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
+  .raf-home-hero .raf-home-hero-image { width: 100%; }
+}
+@media (max-width:767px) {
+  .raf-home-hero .raf-home-hero-band { padding:var(--raf-band-padding) var(--raf-hero-gutter-mobile) !important; }
+  .raf-home-hero .raf-home-hero-inner { grid-template-columns: minmax(0,1fr); }
+  .raf-home-hero .raf-home-hero-title { font-size: 36px !important; }
+  .raf-home-hero .raf-home-hero-image { max-width: 480px; }
+}
+
+.raf-home-hero .raf-home-hero-actions { display:flex; flex-wrap:wrap; gap:var(--raf-action-gap); margin:0 !important; padding:0 !important; }
+.raf-home-hero .raf-home-hero-button {
+  display:inline-flex; align-items:center; justify-content:center;
+  box-sizing:border-box !important; height:auto !important; min-height:var(--raf-button-height) !important;
+  padding:calc((var(--raf-button-height) - 20px) / 2) 20px !important; margin:0 !important;
+  border:1px solid var(--raf-white); border-radius:999px;
+  font-family:var(--raf-sans) !important; font-size:14px !important;
+  font-weight:700 !important; line-height:18px !important;
+  cursor:pointer; background:var(--raf-white); color:var(--raf-text) !important;
+  text-decoration:none !important;
+  transition:background-color var(--raf-motion-duration) ease;
+}
+.raf-home-hero .raf-home-hero-button:is(:hover,:focus-visible) { background:var(--reddit-hover-color); text-decoration:none !important; }
+.raf-home-hero .raf-home-hero-button--outline { background:transparent; color:var(--raf-white) !important; }
+.raf-home-hero .raf-home-hero-button--outline:is(:hover,:focus-visible) { background:var(--raf-white-hover); }
+.raf-home-hero .raf-home-hero-button:focus-visible { outline:3px solid var(--raf-white); outline-offset:3px; }
+</style>
+<section class="raf-home-hero" aria-labelledby="raf-home-hero-title">
+  <div class="raf-home-hero-band">
+    <div class="raf-home-hero-inner">
+      <div class="raf-home-hero-copy">
+        <h1 class="raf-home-hero-title" id="raf-home-hero-title">Reddit Ads training built for agency teams</h1>
+        <div class="raf-home-hero-actions">
+          <a class="raf-home-hero-button" href="https://adsformula.redditforbusiness.com/sl/303512c8">Get your team started</a>
+        </div>
+      </div>
+      <div class="raf-home-hero-image" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>

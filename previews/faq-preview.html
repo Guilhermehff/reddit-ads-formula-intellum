@@ -1,0 +1,197 @@
+<!doctype html><html lang="en"><head><link rel="stylesheet" href="../custom-css-updated.css"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Embed preview</title><style>
+
+/* Temporary decorative placeholder; replace with the final header image later. */
+.raf-faq .faq-hero-placeholder {
+  background-color: var(--raf-white);
+  background-image: conic-gradient(var(--raf-orange-tint) 25%, transparent 0 50%, var(--raf-orange-tint) 0 75%, transparent 0);
+  background-size: 60px 60px;
+  aspect-ratio: 16 / 9;
+}
+
+.raf-faq { --faq-sans:var(--raf-font-sans); --faq-display:var(--raf-font-display); width:100%; margin:0; padding:0; color:var(--raf-text); background:var(--raf-white); font-family:var(--faq-sans); text-align:left; overflow-wrap:break-word; }
+.raf-faq *, .raf-faq *::before, .raf-faq *::after { box-sizing:border-box; }
+.raf-faq :is(h1,h2,p,summary) { margin:0; padding:0; letter-spacing:0; text-transform:none; }
+.raf-faq .faq-hero { width:100%; margin:0; padding:var(--raf-band-padding) var(--raf-hero-gutter-desktop); background:var(--raf-orange); }
+.raf-faq .faq-hero-inner { display:flex; align-items:center; justify-content:space-between; gap:40px; max-width:var(--raf-wide-width); margin:0 auto; min-height:270px; }
+.raf-faq .faq-hero h1 { flex:1; min-width:0; font-family:var(--faq-display) !important; font-size:48px !important; line-height:1.1 !important; font-weight:700 !important; color:var(--raf-white) !important; }
+.raf-faq .faq-hero-image { display:block; flex:none; width:480px; height:270px; max-width:100%; object-fit:cover; border-radius:16px; background:var(--raf-white); }
+.raf-faq .faq-body { width:calc(100% - 2 * var(--raf-page-gutter)); max-width:var(--raf-reading-width); margin:0 auto !important; padding:var(--raf-content-gap) 0 !important; }
+.raf-faq .faq-item { display:block; margin:0 !important; padding:0 !important; border:0; border-bottom:1px solid var(--reddit-divider-color); border-radius:0; background:var(--raf-white); }
+.raf-faq .faq-question { display:flex; align-items:center; justify-content:space-between; gap:8px; width:100%; margin:0 !important; padding:12px var(--raf-card-padding) !important; cursor:pointer; list-style:none; color:var(--raf-text); background:transparent; transition:background-color var(--raf-motion-duration) ease; }
+.raf-faq .faq-question::-webkit-details-marker { display:none; }
+.raf-faq .faq-question::marker { content:""; }
+.raf-faq .faq-question::before, .raf-faq .faq-question::after { content:none !important; }
+.raf-faq .faq-question h2 { flex:1; min-width:0; margin:0 !important; padding:0 !important; font-family:var(--faq-display) !important; font-size:24px !important; font-weight:700 !important; line-height:1.1 !important; color:var(--raf-text) !important; }
+.raf-faq .faq-question, .raf-faq .faq-question * { text-decoration:none !important; }
+.raf-faq .faq-question:focus-visible { background:var(--reddit-hover-color); }
+@media (hover: hover) and (pointer: fine) {
+
+.raf-faq .faq-question:hover { background:var(--reddit-hover-color); }
+}
+.raf-faq .faq-question:focus-visible, .raf-faq a:focus-visible { outline:3px solid var(--raf-focus); outline-offset:2px; }
+.raf-faq .faq-state-icon { margin:0 !important; padding:0 !important; display:block; width:24px; height:24px; flex:none; }
+.raf-faq .faq-minus { display:none; }
+.raf-faq .faq-item[open] > .faq-question .faq-plus { display:none; }
+.raf-faq .faq-item[open] > .faq-question .faq-minus { display:block; }
+.raf-faq .faq-answer { margin:0 !important; padding:0 16px !important; }
+.raf-faq .faq-answer p { margin:0 !important; padding:0 !important; font-family:var(--faq-sans) !important; font-size:14px !important; line-height:21px !important; font-weight:400 !important; color:var(--raf-text) !important; }
+.raf-faq .faq-answer p ~ p { margin-top:8px !important; }
+.raf-faq .faq-answer a { color:var(--raf-orange-readable); text-decoration:underline; text-underline-offset:2px; }
+.raf-faq .faq-answer a:hover { color:var(--raf-orange-hover); }
+.raf-faq p:empty, .raf-faq > br, .raf-faq .faq-body > br, .raf-faq .faq-item > br, .raf-faq .faq-answer > br, .raf-faq .faq-hero-inner > br { display:none !important; }
+@media(max-width:1100px) { .raf-faq .faq-hero { padding-inline:var(--raf-hero-gutter-tablet); } .raf-faq .faq-hero-image { width:42%; height:auto; aspect-ratio:16/9; } }
+@media(max-width:767px) { .raf-faq .faq-hero { padding:var(--raf-band-padding) var(--raf-hero-gutter-mobile); } .raf-faq .faq-hero-inner { flex-direction:column; align-items:flex-start; gap:24px; } .raf-faq .faq-hero h1 { flex:auto; font-size:36px !important; } .raf-faq .faq-hero-image { width:100%; max-width:480px; height:auto; } .raf-faq .faq-question h2 { font-size:20px !important; } }
+
+/* Explicit mutually exclusive states override platform SVG display rules. */
+.raf-faq details.faq-item > summary.faq-question .faq-plus {
+  display: block !important;
+}
+.raf-faq details.faq-item > summary.faq-question .faq-minus {
+  display: none !important;
+}
+.raf-faq details.faq-item[open] > summary.faq-question .faq-plus {
+  display: none !important;
+}
+.raf-faq details.faq-item[open] > summary.faq-question .faq-minus {
+  display: block !important;
+}
+
+
+/* Match the homepage banner's 3200 x 867 ratio on desktop. */
+.raf-faq { container-type: inline-size; }
+@media (min-width:1200px) {
+  .raf-faq .faq-hero {
+    box-sizing: border-box;
+    height: 27.09375vw !important;
+    height: 27.09375cqw !important;
+    min-height: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    padding-block:var(--raf-band-padding) !important;
+  }
+  .raf-faq .faq-hero-inner { width:100%; min-height:0 !important; }
+}
+/* Smaller layouts stay content-driven so headings and buttons cannot be clipped. */
+@media (max-width:1199px) {
+  .raf-faq .faq-hero { height:auto !important; min-height:350px !important; }
+}
+
+
+/* Intellum gives rich-text divs a 40px bottom margin. Reset the embed wrapper. */
+.raf-faq { margin: 0 !important; padding: 0 !important; }
+
+/* Same hero text column, image format, and spacing as the other page embeds. */
+.raf-faq .faq-hero-inner {
+  display:grid !important;
+  grid-template-columns:minmax(0,560px) 480px;
+  align-items:center;
+  justify-content:space-between;
+  gap:40px;
+  width:100%;
+  max-width:var(--raf-wide-width);
+  min-height:0 !important;
+}
+.raf-faq .faq-hero-copy { display:flex; flex-direction:column; align-items:flex-start; gap:16px; margin:0 !important; padding:0 !important; min-width:0; }
+.raf-faq .faq-hero-description { font-family:var(--faq-sans) !important; font-size:14px !important; line-height:21px !important; font-weight:400 !important; color:var(--raf-white) !important; margin:0 !important; padding:0 !important; max-width:560px; }
+.raf-faq .faq-hero-image { width:480px; height:270px; border-radius:var(--raf-card-radius); margin:0 !important; }
+@media(max-width:1199px) {
+  .raf-faq .faq-hero { padding-inline:var(--raf-hero-gutter-tablet); }
+  .raf-faq .faq-hero-inner { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+  .raf-faq .faq-hero-image { width:100%; height:auto; aspect-ratio:16/9; }
+}
+@media(max-width:767px) {
+  .raf-faq .faq-hero { padding:var(--raf-band-padding) var(--raf-hero-gutter-mobile); }
+  .raf-faq .faq-hero-inner { grid-template-columns:minmax(0,1fr); gap:40px; }
+  .raf-faq .faq-hero-image { max-width:480px; }
+}
+
+
+/* Preserve approved hero gutters and neutralize platform wrapper spacing. */
+.raf-faq .faq-hero-inner { margin:0 auto !important; padding:0 !important; }
+.raf-faq .faq-hero-copy { margin:0 !important; padding:0 !important; min-width:0; }
+.raf-faq .faq-hero { padding:var(--raf-band-padding) var(--raf-hero-gutter-desktop) !important; }
+@media(max-width:1199px) { .raf-faq .faq-hero { padding-inline:var(--raf-hero-gutter-tablet) !important; } }
+@media(max-width:767px) { .raf-faq .faq-hero { padding:var(--raf-band-padding) var(--raf-hero-gutter-mobile) !important; } }
+</style>
+<div class="raf-faq" id="raf-faq-page"><section class="faq-hero"><div class="faq-hero-inner"><div class="faq-hero-copy"><h1>Frequently asked questions</h1><p class="faq-hero-description">Find answers about Reddit Ads certifications, training options, and how to get started with Reddit Ads Formula.</p></div><div class="faq-hero-image faq-hero-placeholder" aria-hidden="true"></div></div></section><div class="faq-body"><details class="faq-item"><summary class="faq-question"><h2>What are the benefits of getting Reddit Ads certified?</h2><svg class="faq-state-icon faq-plus" aria-hidden="true" focusable="false" preserveAspectRatio="none" overflow="visible" style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Plus">
+<path id="Vector" d="M5 12H19M12 5V19" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+</g>
+</svg>
+<svg class="faq-state-icon faq-minus" aria-hidden="true" focusable="false" preserveAspectRatio="none" overflow="visible" style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Minus">
+<path id="Vector" d="M5 12H19" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+</g>
+</svg>
+</summary><div class="faq-answer"><p>Certification gives your team a solid understanding of Reddit's ad ecosystem, so you onboard faster, run stronger campaigns, and prove that expertise to clients and leadership. <a href="https://adsformula.redditforbusiness.com/sl/29277f7f">Explore certifications</a>.</p></div></details><details class="faq-item"><summary class="faq-question"><h2>What is Reddit Ads Formula?</h2><svg class="faq-state-icon faq-plus" aria-hidden="true" focusable="false" preserveAspectRatio="none" overflow="visible" style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Plus">
+<path id="Vector" d="M5 12H19M12 5V19" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+</g>
+</svg>
+<svg class="faq-state-icon faq-minus" aria-hidden="true" focusable="false" preserveAspectRatio="none" overflow="visible" style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Minus">
+<path id="Vector" d="M5 12H19" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+</g>
+</svg>
+</summary><div class="faq-answer"><p>Reddit Ads Formula is Reddit's training and certification program for advertisers and agency teams. It helps teams build the platform knowledge to run stronger Reddit campaigns for clients and businesses.</p></div></details><details class="faq-item"><summary class="faq-question"><h2>What certifications are available?</h2><svg class="faq-state-icon faq-plus" aria-hidden="true" focusable="false" preserveAspectRatio="none" overflow="visible" style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Plus">
+<path id="Vector" d="M5 12H19M12 5V19" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+</g>
+</svg>
+<svg class="faq-state-icon faq-minus" aria-hidden="true" focusable="false" preserveAspectRatio="none" overflow="visible" style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Minus">
+<path id="Vector" d="M5 12H19" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+</g>
+</svg>
+</summary><div class="faq-answer"><p>We currently offer two core certifications, <a href="https://adsformula.redditforbusiness.com/sl/8724abbf">Reddit Ads Fundamentals</a> and <a href="https://adsformula.redditforbusiness.com/sl/d0a75fd2">Reddit Ads Boost</a>. These are highly recommended for anyone planning, managing, or measuring Reddit campaigns.</p></div></details><details class="faq-item"><summary class="faq-question"><h2>What topics are covered in Reddit Ads Formula?</h2><svg class="faq-state-icon faq-plus" aria-hidden="true" focusable="false" preserveAspectRatio="none" overflow="visible" style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Plus">
+<path id="Vector" d="M5 12H19M12 5V19" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+</g>
+</svg>
+<svg class="faq-state-icon faq-minus" aria-hidden="true" focusable="false" preserveAspectRatio="none" overflow="visible" style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Minus">
+<path id="Vector" d="M5 12H19" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+</g>
+</svg>
+</summary><div class="faq-answer"><p>Getting certified gives teams a solid understanding of Reddit's unique ad ecosystem, helping them onboard faster, optimize campaigns like a pro, and boost expertise on Reddit. Our Learning Paths contain self-paced training courses designed to deepen knowledge. Our extensive on-demand video library offers product tutorials, explainer videos, and recordings of our training webinars. Dive into a range of topics, including Reddit Fundamentals, ad solutions, performance optimization, shopping, creative strategy, and planning. We've got the knowledge and skills you need to create winning Reddit campaigns.</p></div></details><details class="faq-item"><summary class="faq-question"><h2>Who can join Reddit Ads Formula?</h2><svg class="faq-state-icon faq-plus" aria-hidden="true" focusable="false" preserveAspectRatio="none" overflow="visible" style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Plus">
+<path id="Vector" d="M5 12H19M12 5V19" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+</g>
+</svg>
+<svg class="faq-state-icon faq-minus" aria-hidden="true" focusable="false" preserveAspectRatio="none" overflow="visible" style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Minus">
+<path id="Vector" d="M5 12H19" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+</g>
+</svg>
+</summary><div class="faq-answer"><p>Anyone can join Reddit Ads Formula. It’s open to agency teams and advertisers who run or are considering Reddit as a channel, at any experience level.</p></div></details><details class="faq-item"><summary class="faq-question"><h2>What does it cost to register?</h2><svg class="faq-state-icon faq-plus" aria-hidden="true" focusable="false" preserveAspectRatio="none" overflow="visible" style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Plus">
+<path id="Vector" d="M5 12H19M12 5V19" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+</g>
+</svg>
+<svg class="faq-state-icon faq-minus" aria-hidden="true" focusable="false" preserveAspectRatio="none" overflow="visible" style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Minus">
+<path id="Vector" d="M5 12H19" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+</g>
+</svg>
+</summary><div class="faq-answer"><p>There’s no cost to register. All you need is a business email address.</p></div></details><details class="faq-item"><summary class="faq-question"><h2>How long does it typically take to complete a certification?</h2><svg class="faq-state-icon faq-plus" aria-hidden="true" focusable="false" preserveAspectRatio="none" overflow="visible" style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Plus">
+<path id="Vector" d="M5 12H19M12 5V19" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+</g>
+</svg>
+<svg class="faq-state-icon faq-minus" aria-hidden="true" focusable="false" preserveAspectRatio="none" overflow="visible" style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Minus">
+<path id="Vector" d="M5 12H19" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+</g>
+</svg>
+</summary><div class="faq-answer"><p>Allow around two hours: one hour for the on-demand training and one hour for the timed certification exam.</p></div></details><details class="faq-item"><summary class="faq-question"><h2>What other support resources are available?</h2><svg class="faq-state-icon faq-plus" aria-hidden="true" focusable="false" preserveAspectRatio="none" overflow="visible" style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Plus">
+<path id="Vector" d="M5 12H19M12 5V19" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+</g>
+</svg>
+<svg class="faq-state-icon faq-minus" aria-hidden="true" focusable="false" preserveAspectRatio="none" overflow="visible" style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Minus">
+<path id="Vector" d="M5 12H19" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+</g>
+</svg>
+</summary><div class="faq-answer"><p>You can also access <a href="https://ads.reddit.com/">Ads Manager registration</a>, the <a href="https://business.reddithelp.com/">Reddit Ads Help Center</a>, the <a href="https://reddit.com/r/redditforbusiness">r/redditforbusiness community</a>, and the Reddit for Business Blog.</p></div></details></div></div>
+</body></html>

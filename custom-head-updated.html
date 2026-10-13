@@ -1,0 +1,114 @@
+<meta name="google-site-verification" content="BCh6AVLmB_bP_LU4z1UyehapG4xgdCjfZ7eJTgo3uHg" />
+
+<script>
+(function () {
+  "use strict";
+
+  function initialize() {
+    // Safe to initialize again if the platform reloads this customization.
+    if (window.redditAdsCustomizationsCleanup) {
+      window.redditAdsCustomizationsCleanup();
+    }
+
+    var timer;
+    var levels = ["beginner", "intermediate", "advanced"];
+    var observer = new MutationObserver(function (records) {
+      var relevant = records.some(function (record) {
+        if (record.type !== "attributes") return true;
+        if (record.attributeName === "data-category-following") return true;
+        return record.target.matches(".activitymeta__item, .followbutton");
+      });
+      if (relevant) schedule();
+    });
+
+    function applyLevelTags() {
+      document.querySelectorAll(
+        ".activitymeta .activitymeta__item:not(.activitymeta__item--type)"
+      ).forEach(function (item) {
+        // Read the visible label without removing accessibility text from the page.
+        var label = item.cloneNode(true);
+        label.querySelectorAll(".a11y-atonly, [aria-hidden='true']").forEach(function (node) {
+          node.remove();
+        });
+        var text = label.textContent.replace(/\s+/g, " ").trim().toLowerCase();
+        // Accept the screen-reader Difficulty prefix used in activity headers.
+        var match = text.match(/^(?:difficulty\s*:?\s*)?(beginner|intermediate|advanced)$/);
+        var level = match ? match[1] : null;
+        var managed = item.hasAttribute("data-level-tagged");
+        if (!level && !managed) return;
+
+        levels.forEach(function (name) {
+          item.classList.toggle("activitymeta__item--" + name, name === level);
+        });
+        item.classList.toggle("activitymeta__item--level", Boolean(level));
+        if (level) item.setAttribute("data-level-tagged", "true");
+        else item.removeAttribute("data-level-tagged");
+      });
+    }
+
+    function updateFollowButtons() {
+      document.querySelectorAll(".categoryheader__actions .followbutton").forEach(function (button) {
+        var state = button.getAttribute("data-category-following");
+        var following = state === "true" ||
+          (state === null && button.classList.contains("followbutton--following"));
+        var label = following ? "Following" : "Follow for updates";
+        var walker = document.createTreeWalker(button, NodeFilter.SHOW_TEXT);
+        var node;
+        while ((node = walker.nextNode())) {
+          if (node.parentElement.closest("svg")) continue;
+          if (/^(Follow|Follow for updates|Following)$/.test(node.textContent.trim())) {
+            if (node.textContent.trim() !== label) node.textContent = label;
+          }
+        }
+
+        // Remove only the tooltip reference; retain unrelated descriptions.
+        var tooltip = button.nextElementSibling;
+        if (tooltip && tooltip.classList.contains("hint--a11y") && tooltip.id) {
+          var descriptions = (button.getAttribute("aria-describedby") || "")
+            .split(/\s+/).filter(function (id) { return id && id !== tooltip.id; });
+          if (descriptions.length) button.setAttribute("aria-describedby", descriptions.join(" "));
+          else button.removeAttribute("aria-describedby");
+        }
+        button.removeAttribute("data-hint");
+        button.classList.remove("hint", "hint--top", "hint--delay", "hint--desktoponly");
+        button.setAttribute("data-follow-text-updated", "true");
+      });
+    }
+
+    function apply() {
+      // Our own label and class changes must not retrigger the observer.
+      observer.disconnect();
+      try {
+        applyLevelTags();
+        updateFollowButtons();
+      } finally {
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true,
+          characterData: true,
+          attributes: true,
+          attributeFilter: ["data-category-following", "class"]
+        });
+      }
+    }
+
+    function schedule() {
+      // Coalesce changes without postponing updates indefinitely.
+      if (timer) return;
+      timer = window.setTimeout(function () { timer = null; apply(); }, 100);
+    }
+
+    window.redditAdsCustomizationsCleanup = function () {
+      observer.disconnect();
+      window.clearTimeout(timer);
+    };
+    apply();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initialize, { once: true });
+  } else {
+    initialize();
+  }
+})();
+</script>

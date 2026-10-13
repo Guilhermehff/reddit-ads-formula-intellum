@@ -1,0 +1,403 @@
+<style>
+.raf-embed { width:100%; color:var(--raf-text); background:var(--raf-white); font-family:"Reddit Sans",Arial,sans-serif; font-size:14px; line-height:1.5; text-align:left; overflow-wrap:break-word; }
+.raf-embed *, .raf-embed *::before, .raf-embed *::after { box-sizing:border-box; }
+.raf-embed h1, .raf-embed h2, .raf-embed h3, .raf-embed p { margin:0; padding:0; }
+.raf-embed h1, .raf-embed h2, .raf-embed h3 { font-family:"Reddit Display","Reddit Sans",Arial,sans-serif; font-weight:700; letter-spacing:-.025em; text-transform:none; }
+.raf-embed h1 { font-size:clamp(32px,4vw,48px); line-height:1.1; color:var(--raf-white); }
+.raf-embed h2 { font-size:24px; line-height:1.15; color:var(--raf-text); margin-bottom:8px; }
+.raf-embed h3 { font-size:18px; line-height:1.2; color:var(--raf-text); margin-bottom:4px; }
+.raf-embed p { font-size:14px; line-height:1.5; color:var(--raf-text); }
+.raf-embed a { text-decoration:none; }
+.raf-embed a:focus-visible { outline:3px solid var(--raf-focus); outline-offset:4px; }
+.raf-embed .raf-hero { background:var(--raf-orange); padding:40px clamp(24px,5.55vw,80px); }
+.raf-embed .raf-hero-inner { max-width:var(--raf-wide-width); margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; gap:40px; }
+.raf-embed .raf-hero-copy { margin-bottom:0 !important; flex:1 1 430px; min-width:0; }
+.raf-embed .raf-hero p { color:var(--raf-white); max-width:560px; margin:16px 0; }
+.raf-embed .raf-actions { margin-bottom:0 !important; display:flex; flex-wrap:wrap; align-items:center; gap:var(--raf-action-gap); }
+.raf-embed .raf-button { display:inline-flex; align-items:center; justify-content:center; min-height:36px; max-width:100%; padding:8px 20px; border:1px solid transparent; border-radius:999px; font-size:14px; font-weight:700; line-height:1.3; text-align:center; background:var(--raf-orange); color:var(--raf-white); }
+
+.raf-embed .raf-button-white { background:var(--raf-white); color:var(--raf-text); }
+.raf-embed .raf-button-light { background:transparent; color:var(--raf-white); border-color:var(--raf-white); }
+.raf-embed .raf-button-outline { background:transparent; color:var(--raf-orange); border-color:var(--raf-orange); }
+.raf-embed .raf-placeholder { aspect-ratio:16 / 9; border-radius:var(--raf-card-radius); background-color:var(--raf-white); background-image:conic-gradient(var(--raf-orange-tint) 25%,transparent 0 50%,var(--raf-orange-tint) 0 75%,transparent 0); background-size:28px 28px; }
+.raf-embed .raf-hero-image { flex:0 1 480px; width:100%; background-size:60px 60px; }
+.raf-embed .raf-image { display:block; width:100%; height:auto; aspect-ratio:16 / 9; object-fit:cover; border-radius:var(--raf-card-radius); }
+.raf-embed .raf-body { width:100%; max-width:748px; margin:0 auto; padding:var(--raf-band-padding) var(--raf-hero-gutter-mobile); }
+.raf-embed .raf-body > .raf-section ~ .raf-section { margin-top:var(--raf-content-gap); }
+.raf-embed .raf-subsection { margin-top:var(--raf-description-gap); }
+.raf-embed ul { margin:8px 0 0; padding:0 0 0 16px; list-style:disc outside; color:var(--raf-text); }
+.raf-embed li { display:list-item; margin:0 0 8px; padding:0; font-size:14px; line-height:1.5; }
+.raf-embed li:last-child { margin-bottom:0; }
+.raf-embed .raf-features { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr)); gap:8px; margin-top:16px; }
+.raf-embed .raf-feature { padding:var(--raf-card-padding); border-radius:var(--raf-card-radius); background:var(--raf-orange-tint); }
+.raf-embed .raf-feature h3 { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; color:var(--raf-orange); margin-bottom:12px; }
+.raf-embed .raf-feature p { color:var(--raf-text); }
+.raf-embed .raf-icon { width:19px; height:19px; flex:none; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
+.raf-embed .raf-lessons { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr)); gap:0; margin-top:var(--raf-description-gap); }
+.raf-embed .raf-lesson { display:block; color:var(--raf-text); }
+.raf-embed .raf-lesson h3 { font-size:17px; margin:16px 0 8px; }
+
+.raf-embed .raf-meta { display:flex; flex-wrap:wrap; align-items:center; gap:16px; font-size:12px; font-weight:700; }
+.raf-embed .raf-level { display:inline-flex; align-items:center; gap:6px; padding:2px 6px; border-radius:100px; }
+.raf-embed .raf-level::before { content:""; width:8px; height:8px; border-radius:50%; }
+.raf-embed .raf-cta { background:var(--raf-orange-tint); padding:64px 24px; text-align:center; }
+.raf-embed .raf-cta-inner { max-width:760px; margin:0 auto; }
+.raf-embed .raf-cta h2 { font-size:clamp(28px,3.3vw,40px); margin-bottom:16px; }
+.raf-embed .raf-cta .raf-actions { justify-content:center; margin-top:16px; }
+.raf-embed #raf-recommended-lessons { scroll-margin-top:100px; }
+
+/* Embed-owned layout; no platform component ID dependency. */
+.raf-embed { width:100%; max-width:none; margin-top:0; padding-top:0; }
+.raf-embed .raf-hero, .raf-embed .raf-cta { width:100%; max-width:none; margin-inline:0; }
+.raf-embed .raf-hero { margin-top:0; }
+
+/* Figma 820:3056 — content typography and spacing, scoped to this page. */
+.raf-embed {
+  --raf-sans:var(--raf-font-sans);
+  --raf-display:var(--raf-font-display);
+  font-family: var(--raf-sans) !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  letter-spacing: 0 !important;
+}
+.raf-embed :is(h1,h2,h3,p,ul,li,a,span) {
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+.raf-embed :is(h1,h2,h3) {
+  font-family: var(--raf-display) !important;
+  font-weight: 700 !important;
+  line-height: 1.1 !important;
+  padding: 0 !important;
+}
+.raf-embed h1 { font-size:48px !important; margin:0 !important; }
+.raf-embed h2 { font-size:24px !important; margin:0 0 8px !important; }
+.raf-embed h3 { font-size:18px !important; margin:0 0 2px !important; }
+.raf-embed :is(p,li) {
+  font-family:var(--raf-sans) !important;
+  font-size:14px !important;
+  font-weight:400 !important;
+  line-height:21px !important;
+}
+.raf-embed p { margin:0 !important; padding:0 !important; }
+/* Intellum's HTML/markdown conversion can insert empty layout children. */
+.raf-embed p:empty,
+.raf-embed > br,
+.raf-embed .raf-hero > br,
+.raf-embed .raf-hero-inner > br,
+.raf-embed .raf-features > br,
+.raf-embed .raf-lessons > br { display:none !important; }
+.raf-embed .raf-hero {
+  padding:var(--raf-band-padding) var(--raf-hero-gutter-desktop) !important;
+  min-height:350px;
+  display:flex;
+  align-items:center;
+}
+.raf-embed .raf-hero-inner {
+  display:grid !important;
+  grid-template-columns:minmax(0,560px) 480px;
+  justify-content:space-between;
+  align-items:center;
+  gap:40px !important;
+  width:100%;
+  max-width:var(--raf-wide-width) !important;
+  margin-inline:auto !important;
+}
+.raf-embed .raf-hero-copy {
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:16px;
+}
+.raf-embed .raf-hero-image {
+  width:480px !important;
+  height:270px !important;
+  max-width:100%;
+}
+.raf-embed .raf-actions { gap:var(--raf-action-gap) !important; }
+.raf-embed .raf-button {
+  font-family:var(--raf-sans) !important;
+  font-size:14px !important;
+  font-weight:700 !important;
+  line-height:18px !important;
+  padding:8px 20px !important;
+  min-height:0 !important;
+  border-width:0 !important;
+}
+.raf-embed :is(.raf-button-light,.raf-button-outline) { border-width:1px !important; }
+.raf-embed .raf-body {
+  width:calc(100% - 2 * var(--raf-page-gutter)) !important;
+  max-width:var(--raf-reading-width) !important;
+  margin-inline:auto !important;
+  padding:var(--raf-content-gap) 0 !important;
+}
+.raf-embed .raf-section { margin:0 !important; padding:0 !important; }
+.raf-embed .raf-body > .raf-section ~ .raf-section { margin-top:var(--raf-content-gap) !important; }
+.raf-embed .raf-subsection { margin-top:var(--raf-description-gap) !important; }
+.raf-embed .raf-subsection ul { margin:8px 0 0 !important; padding:0 !important; list-style-position:inside !important; }
+.raf-embed .raf-subsection li { margin:0 0 8px !important; padding:0 !important; }
+.raf-embed .raf-subsection li:last-child { margin-bottom:0 !important; }
+.raf-embed .raf-features {
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  align-items:stretch !important;
+  grid-auto-rows:1fr;
+  gap:8px !important;
+  margin-top:16px !important;
+}
+.raf-embed .raf-feature { padding:var(--raf-card-padding) !important; margin-bottom:0 !important; }
+.raf-embed .raf-feature > p:last-child { margin-bottom:0 !important; padding-bottom:0 !important; }
+.raf-embed .raf-feature h3 { gap:4px !important; align-items:center !important; margin:0 0 12px !important; }
+.raf-embed .raf-feature:is(:first-child,:last-child) .raf-icon { width:16px !important; height:16px !important; }
+.raf-embed .raf-lessons {
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:0 !important;
+  margin-top:var(--raf-description-gap) !important;
+}
+.raf-embed .raf-lesson h3 { font-size:17px !important; margin:16px 0 8px !important; }
+.raf-embed .raf-meta {
+  font-family:var(--raf-display) !important;
+  font-size:12px !important;
+  font-weight:700 !important;
+  line-height:1.1 !important;
+  gap:16px !important;
+}
+.raf-embed .raf-level { line-height:16px !important; padding:2px 6px 2px 4px !important; }
+.raf-embed .raf-cta { padding:64px 24px !important; }
+.raf-embed .raf-cta-inner { max-width:var(--raf-reading-width) !important; }
+.raf-embed .raf-cta h2 { font-size:40px !important; margin:0 0 16px !important; }
+.raf-embed .raf-cta .raf-actions { margin-top:16px !important; }
+/* Responsive adaptations; Figma's supplied frame is desktop-only. */
+@media (max-width:1199px) {
+  .raf-embed .raf-hero { padding-inline:var(--raf-hero-gutter-tablet) !important; }
+  .raf-embed .raf-hero-inner { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+  .raf-embed .raf-hero-image { width:100% !important; height:auto !important; }
+}
+@media (max-width:767px) {
+  .raf-embed .raf-hero { padding:var(--raf-band-padding) var(--raf-hero-gutter-mobile) !important; }
+  .raf-embed .raf-hero-inner { grid-template-columns:minmax(0,1fr); }
+  .raf-embed .raf-hero-image { max-width:480px; }
+  .raf-embed h1 { font-size:36px !important; }
+  .raf-embed .raf-cta h2 { font-size:32px !important; }
+}
+@media (max-width:599px) {
+  .raf-embed .raf-features,
+  .raf-embed .raf-lessons { grid-template-columns:minmax(0,1fr) !important; }
+}
+
+
+/* Match the platform's button and catalog-card interaction patterns. */
+.raf-embed .raf-button {
+  transition: background-color var(--raf-motion-duration) ease, border-color var(--raf-motion-duration) ease, color var(--raf-motion-duration) ease !important;
+}
+.raf-embed .raf-button:is(:hover, :focus, :focus-visible) {
+  background-color: var(--raf-orange-hover) !important;
+  border-color: var(--raf-orange-hover) !important;
+  color: var(--raf-white) !important;
+  text-decoration: none !important;
+}
+/* White and outlined buttons use the platform's neutral button treatment. */
+.raf-embed :is(.raf-button-white, .raf-button-light, .raf-button-outline):is(:hover, :focus, :focus-visible) {
+  background-color: var(--reddit-hover-color) !important;
+  text-decoration: none !important;
+}
+.raf-embed .raf-button-white:is(:hover, :focus, :focus-visible) { border-color:transparent !important; }
+.raf-embed :is(.raf-button-light,.raf-button-outline):is(:hover, :focus, :focus-visible) { border-color:currentColor !important; }
+.raf-embed :is(.raf-button-white, .raf-button-light):is(:hover, :focus, :focus-visible) {
+  color: var(--raf-text) !important;
+}
+.raf-embed .raf-button-outline:is(:hover, :focus, :focus-visible) {
+  color: var(--raf-orange) !important;
+}
+/* Like catalog tiles: the full link and its text panel share a gray surface. */
+.raf-embed .raf-lesson {
+  border-radius:var(--raf-card-radius);
+  cursor: pointer;
+  transition: background-color var(--raf-motion-duration) ease !important;
+}
+.raf-embed .raf-lesson:focus-visible {
+  background-color: var(--reddit-hover-color) !important;
+  text-decoration: none !important;
+}
+@media (hover: hover) and (pointer: fine) {
+
+.raf-embed .raf-lesson:hover {
+  background-color: var(--reddit-hover-color) !important;
+  text-decoration: none !important;
+}
+}
+.raf-embed .raf-lesson:is(:hover, :focus, :focus-visible, :focus-within) h3 {
+  text-decoration: none !important;
+}
+/* Keep keyboard focus visible in addition to the shared hover treatment. */
+.raf-embed :is(.raf-button, .raf-lesson):focus-visible {
+  outline: 3px solid var(--raf-focus);
+  outline-offset: 4px;
+}
+
+
+/* Inset lesson content from its hover surface without hover layout shifts. */
+.raf-embed a.raf-lesson {
+  box-sizing: border-box;
+  min-width: 0;
+  padding:var(--raf-card-padding) !important;
+  margin: 0 !important;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+}
+/* No platform-added spacing below the final metadata row. */
+.raf-embed a.raf-lesson > .raf-meta {
+  margin-top: auto !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+/* Override platform link decorations in all interaction states. */
+.raf-embed a.raf-lesson,
+.raf-embed a.raf-button,
+.raf-embed a.raf-lesson:is(:link, :visited, :hover, :focus, :focus-visible, :active),
+.raf-embed a.raf-button:is(:link, :visited, :hover, :focus, :focus-visible, :active),
+.raf-embed a.raf-lesson *,
+.raf-embed a.raf-button * {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+}
+
+
+/* Button-specific hover and keyboard-focus colors. */
+.raf-embed a.raf-button-light:is(:hover, :focus, :focus-visible) {
+  background-color: var(--raf-white-hover) !important;
+  border-color: var(--raf-white-hover-border) !important;
+  color: var(--raf-white) !important;
+}
+.raf-embed .raf-cta a.raf-button:not(.raf-button-outline):is(:hover, :focus, :focus-visible) {
+  background-color: var(--raf-orange-hover) !important;
+  border-color: var(--raf-orange-hover) !important;
+  color: var(--raf-white) !important;
+}
+.raf-embed a.raf-button-outline:is(:hover, :focus, :focus-visible) {
+  background-color: var(--raf-orange-tint) !important;
+  border-color: var(--raf-orange) !important;
+  color: var(--raf-orange) !important;
+}
+
+
+/* Match the homepage banner's 3200 x 867 ratio on desktop. */
+.raf-embed { container-type: inline-size; }
+@media (min-width:1200px) {
+  .raf-embed .raf-hero {
+    box-sizing: border-box;
+    height: 27.09375vw !important;
+    height: 27.09375cqw !important;
+    min-height: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    padding-block:var(--raf-band-padding) !important;
+  }
+  .raf-embed .raf-hero-inner { width:100%; min-height:0 !important; }
+}
+/* Smaller layouts stay content-driven so headings and buttons cannot be clipped. */
+@media (max-width:1199px) {
+  .raf-embed .raf-hero { height:auto !important; min-height:350px !important; }
+}
+
+
+/* Intellum gives rich-text divs a 40px bottom margin. Reset the embed wrapper. */
+.raf-embed { margin: 0 !important; padding: 0 !important; }
+
+/* Difficulty pills aligned with the shared brand palette. */
+.raf-embed .raf-level { background-color:var(--raf-beginner-background) !important; color:var(--raf-beginner-foreground) !important; }
+.raf-embed .raf-level::before { background-color:var(--raf-beginner-dot) !important; }
+
+
+/* Difficulty tags match the shared Figma component. */
+.raf-embed .raf-level, .raf-embed .raf-cert-meta .raf-cert-difficulty { padding:2px 6px 2px 4px !important; gap:6px; font-family:var(--raf-font-display) !important; font-size:12px !important; font-weight:700; line-height:16px !important; white-space:nowrap; }
+.raf-embed .raf-level::before, .raf-embed .raf-cert-difficulty::before { width:12px; height:12px; flex:0 0 12px; }
+
+/* Reviewed component sizing and scoped readable orange. */
+.raf-embed .raf-feature h3 { font-size:19px !important; color:var(--raf-orange-readable) !important; }
+.raf-embed .raf-feature .raf-icon,
+.raf-embed .raf-feature:is(:first-child,:last-child) .raf-icon { width:16px !important; height:16px !important; margin:0 !important; flex:0 0 16px; color:var(--raf-orange); }
+.raf-embed .raf-button { box-sizing:border-box !important; height:auto !important; min-height:var(--raf-button-height) !important; line-height:18px !important; border-width:1px !important; padding:calc((var(--raf-button-height) - 20px) / 2) 20px !important; }
+.raf-embed .raf-cta .raf-button-outline,
+.raf-embed .raf-cta .raf-button-outline:is(:hover,:focus,:focus-visible,:active) { color:var(--raf-orange-readable) !important; border-color:var(--raf-orange-readable) !important; }
+
+/* Preserve approved hero gutters and neutralize platform wrapper spacing. */
+.raf-embed .raf-hero-inner { margin:0 auto !important; padding:0 !important; }
+.raf-embed .raf-hero-copy { margin:0 !important; padding:0 !important; min-width:0; }
+.raf-embed .raf-lessons { align-items:stretch; }
+.raf-embed a.raf-lesson > :is(.raf-placeholder,.raf-image) { flex-shrink:0; width:100%; }
+
+/* Stacked difficulty bars aligned to the updated design. */
+.raf-embed .raf-level, .raf-embed .raf-cert-meta .raf-cert-difficulty { box-sizing:border-box !important; height:24px !important; padding:4px 6px 4px 4px !important; border-radius:4px !important; gap:6px; line-height:16px !important; --raf-level-dot:var(--raf-beginner-dot); --raf-level-bars:0 -4.5px 0 var(--raf-tag-inactive), 0 -9px 0 var(--raf-tag-inactive); }
+.raf-embed .raf-level::before, .raf-embed .raf-cert-difficulty::before { content:""; width:14px !important; height:3px !important; flex:0 0 14px !important; align-self:flex-end; margin:0 0 2px !important; border-radius:4px !important; background-color:var(--raf-level-dot) !important; -webkit-mask:none !important; mask:none !important; box-shadow:var(--raf-level-bars) !important; }
+.raf-embed .raf-cert-meta .raf-cert-difficulty--beginner { --raf-level-dot:var(--raf-beginner-dot); --raf-level-bars:0 -4.5px 0 var(--raf-tag-inactive), 0 -9px 0 var(--raf-tag-inactive); }
+.raf-embed .raf-cert-meta .raf-cert-difficulty--intermediate { --raf-level-dot:var(--raf-intermediate-dot); --raf-level-bars:0 -4.5px 0 var(--raf-level-dot), 0 -9px 0 var(--raf-tag-inactive); }
+.raf-embed .raf-cert-meta .raf-cert-difficulty--advanced { --raf-level-dot:var(--raf-advanced-dot); --raf-level-bars:0 -4.5px 0 var(--raf-level-dot), 0 -9px 0 var(--raf-level-dot); }
+
+/* Align images with section copy; hover extends 16px into the outer gutter. */
+.raf-embed .raf-lessons { width:auto !important; max-width:none !important; margin-inline:calc(-1 * var(--raf-card-padding)) !important; }
+
+/* Feature icons inherit the title color, including exported SVG artwork. */
+.raf-embed .raf-feature h3 .raf-icon { color:inherit !important; }
+.raf-embed .raf-feature .raf-icon [stroke]:not([stroke="none"]) { stroke:currentColor !important; }
+.raf-embed .raf-feature .raf-icon [fill]:not([fill="none"]) { fill:currentColor !important; }
+
+/* Pink CTA outline button: solid white with readable orange text on interaction. */
+.raf-embed .raf-cta a.raf-button-outline {
+  background:transparent !important;
+  color:var(--raf-orange-readable) !important;
+  border-color:var(--raf-orange-readable) !important;
+}
+.raf-embed .raf-cta a.raf-button-outline:focus-visible {
+  background:var(--raf-cta-outline-hover) !important;
+  color:var(--raf-orange-readable) !important;
+  border-color:var(--raf-orange-hover) !important;
+  outline:2px solid var(--raf-text) !important;
+  outline-offset:3px;
+}
+@media (hover:hover) and (pointer:fine) {
+  .raf-embed .raf-cta a.raf-button-outline:hover {
+    background:var(--raf-cta-outline-hover) !important;
+    color:var(--raf-orange-readable) !important;
+    border-color:var(--raf-orange-hover) !important;
+  }
+}
+
+/* Intro copy to next visible content: 40px.
+   Learning/certification cards already contribute 16px of inner padding. */
+.raf-embed .raf-section > p + .raf-subsection { margin-top:var(--raf-content-gap) !important; }
+.raf-embed .raf-features { margin-top:var(--raf-content-gap) !important; }
+.raf-embed :is(.raf-lessons,.raf-certifications) { margin-top:var(--raf-description-gap) !important; }
+</style>
+<div class="raf-embed">
+<!-- OPTIONAL HERO: omit this section if Intellum already supplies the banner. -->
+<section class="raf-hero" aria-labelledby="raf-title">
+<div class="raf-hero-inner"><div class="raf-hero-copy">
+<h1 id="raf-title">Understand Reddit Ads</h1>
+<p>Build more relevant campaigns with a practical introduction to Reddit’s communities, audiences, and advertising tools.</p>
+<div class="raf-actions"><a class="raf-button raf-button-white" href="https://adsformula.redditforbusiness.com/sl/303512c8">Start learning</a><a class="raf-button raf-button-light" href="#raf-recommended-lessons">View recommended learning paths</a></div>
+</div>
+<!-- Replace this decorative placeholder with an image using class="raf-image raf-hero-image", a hosted HTTPS src, and appropriate alt text. -->
+<div class="raf-placeholder raf-hero-image" aria-hidden="true"></div></div>
+</section>
+<div class="raf-body">
+<section class="raf-section" aria-labelledby="raf-how"><h2 id="raf-how">How Reddit works for advertisers</h2>
+<p>People come to Reddit to ask questions, explore options, and hear real perspectives. Brands can connect with audiences right in the conversations that shape discovery, consideration, and decisions.</p>
+<div class="raf-subsection"><h3>Connect through communities</h3>
+<p>Reach people in contextually relevant communities shaped by shared interests, needs, and questions.</p>
+<ul><li>Connect with people where relevant conversations are already happening.</li><li>Shape messaging around the interests and questions people share.</li><li>Build awareness and consideration as people explore and evaluate options.</li></ul></div>
+<div class="raf-subsection"><h3>Turn intent into action</h3>
+<p>Use Reddit's targeting, placements, creative formats, and measurement tools to support your clients’ campaign goals across the funnel.</p>
+<ul><li>Launch campaigns for awareness, traffic, leads, apps, or sales.</li><li>Use audience and community signals to improve relevance.</li><li>Measure performance and optimize based on campaign goals.</li></ul></div></section>
+<section class="raf-section" aria-labelledby="raf-why"><h2 id="raf-why">What makes Reddit different</h2><p>Reddit combines active discovery with the advertising tools to support client goals across the funnel.</p>
+<div class="raf-features">
+<div class="raf-feature"><h3>Built around communities<svg class="raf-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m3 8 9-5 9 5H3ZM3 21h18M5 18v-7m5 7v-7m4 7v-7m5 7v-7"/></svg></h3><p>Reach people in communities organized around the interests and topics they care about.</p></div>
+<div class="raf-feature"><h3>Intent-led discovery<svg class="raf-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6"/></svg></h3><p>Show up when people research products, compare options, and look for recommendations.</p></div>
+<div class="raf-feature"><h3>Flexible campaign goals<svg class="raf-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></h3><p>Support objectives across the funnel, from discovery and consideration through to conversion.</p></div>
+<div class="raf-feature"><h3>Measure and optimize<svg class="raf-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 3h8v6a4 4 0 0 1-8 0V3ZM8 5H4v3a4 4 0 0 0 4 4m8-7h4v3a4 4 0 0 1-4 4m-4 1v5m-4 3h8m-7 0v-3h6v3"/></svg></h3><p>Track results, learn from campaign data, and optimize toward business goals.</p></div></div></section>
+<section class="raf-section" id="raf-recommended-lessons" aria-labelledby="raf-lessons-title"><h2 id="raf-lessons-title">Recommended Learning Paths</h2><p>Equip teams with foundational lessons that explain how Reddit Ads work, then expand into campaign setup, creative strategy, and measurement skills.</p><div class="raf-lessons">
+<a class="raf-lesson" href="https://adsformula.redditforbusiness.com/sl/8724abbf"><!-- Replace placeholder with <img class="raf-image" src="YOUR_HOSTED_IMAGE_URL" alt=""> when available. --><div class="raf-placeholder" aria-hidden="true"></div><h3>Reddit Fundamentals</h3><div class="raf-meta"><span>16m</span><span class="raf-level">Beginner</span></div></a>
+<a class="raf-lesson" href="https://adsformula.redditforbusiness.com/sl/0f3e1594"><!-- Replace placeholder with <img class="raf-image" src="YOUR_HOSTED_IMAGE_URL" alt=""> when available. --><div class="raf-placeholder" aria-hidden="true"></div><h3>Getting Started with Ads Manager</h3><div class="raf-meta"><span>32m</span><span class="raf-level">Beginner</span></div></a>
+<a class="raf-lesson" href="https://adsformula.redditforbusiness.com/sl/c690e19c"><!-- Replace placeholder with <img class="raf-image" src="YOUR_HOSTED_IMAGE_URL" alt=""> when available. --><div class="raf-placeholder" aria-hidden="true"></div><h3>Creative Strategy for Reddit Campaigns</h3><div class="raf-meta"><span>30m</span><span class="raf-level">Beginner</span></div></a></div></section></div>
+<section class="raf-cta" aria-labelledby="raf-cta-title"><div class="raf-cta-inner"><h2 id="raf-cta-title">Start building Reddit Ads expertise</h2><p>Begin with the basics or explore training based on experience, role, or campaign goals.</p><div class="raf-actions"><a class="raf-button" href="https://adsformula.redditforbusiness.com/sl/8724abbf">Start Reddit Fundamentals</a><a class="raf-button raf-button-outline" href="https://adsformula.redditforbusiness.com/sl/303512c8">Explore all courses</a></div></div></section>
+</div>

@@ -1,0 +1,414 @@
+{
+  "purpose": "Record stakeholder amend decisions and rationale for the complete response.",
+  "decisions": [
+    {
+      "id": 1,
+      "amend": "Get Started / View All text and chevron alignment",
+      "decision": "Will not implement",
+      "reason": "These are native Intellum system elements; this work was not agreed in scope."
+    },
+    {
+      "id": 2,
+      "amend": "Native Log In button has no hover state",
+      "decision": "Approved for work",
+      "next_step": "Inspect the applicable CSS and implement a hover state consistent with the agreed styling.",
+      "implementation_status": "Implemented locally; Intellum visual and device verification pending",
+      "implemented_date": "2026-10-07",
+      "implementation_detail": "Global appheader Login selector confirmed in user-supplied markup. Dark orange pointer hover plus visible keyboard focus."
+    },
+    {
+      "id": 3,
+      "amend": "White text contrast on orange buttons",
+      "decision": "Will not implement",
+      "reason": "Brand limitations prevent changing the button colors."
+    },
+    {
+      "id": 4,
+      "amend": "Follow for updates wraps on tablet",
+      "decision": "Approved for work",
+      "next_step": "Prevent unwanted wrapping and check the available tablet width.",
+      "implementation_status": "Implemented locally; Intellum visual and device verification pending",
+      "implemented_date": "2026-10-07",
+      "implementation_detail": "No-wrap Follow and Following labels; action area permits wrapping."
+    },
+    {
+      "id": 5,
+      "amend": "Inconsistent button corner radii",
+      "decision": "Will not implement",
+      "reason": "Standardizing this would require a review across the whole platform, which was not aligned with the client."
+    },
+    {
+      "id": 6,
+      "amend": "Inconsistent card corner radii",
+      "decision": "Approved for work",
+      "reason": "Align corners on all cards we can control.",
+      "next_step": "Introduce a universal card-radius CSS variable and apply it consistently to controllable cards. The radius value is not yet specified.",
+      "implementation_status": "Implemented locally from supplied homepage and platform stylesheet; rendered verification pending",
+      "implementation_detail": "Shared --raf-card-radius:4px for native and embed cards."
+    },
+    {
+      "id": 7,
+      "amend": "Difficulty indicators rely on similar colors",
+      "decision": "Approved design received and implemented locally",
+      "next_step": "Use multiple dots according to difficulty. User will supply the design before implementation.",
+      "implementation_status": "Implemented; Intellum visual verification pending",
+      "implementation_detail": "Latest Figma 759:2483: three reserved bar slots in a 14x16px indicator, 2px vertical inset, 1px gaps, each bar 10/3px high; bottom 1/2/3 slots colored by level. 24px tag, 4px corners and existing typography retained. Approved #F6F9FB surface retained. Native and embed rules updated; visual verification pending."
+    },
+    {
+      "id": 8,
+      "amend": "Reduce gray surface colors",
+      "decision": "Approved for work",
+      "next_step": "Align surfaces we control to #F6F9FB (surface, selected in item 27) and #DEE1E3 (existing hover).",
+      "implementation_status": "Implemented in local files; pending Intellum visual verification",
+      "implemented_date": "2026-10-07"
+    },
+    {
+      "id": 9,
+      "amend": "Hero alignment differs from native content grid",
+      "decision": "Keep approved UI; verify consistency",
+      "reason": "The current hero alignment was approved in the UI.",
+      "next_step": "Keep the approved alignment and check that all custom pages follow it consistently.",
+      "implementation_status": "Implemented locally; source checks passed; Intellum visual verification pending",
+      "implemented_date": "2026-10-07",
+      "implementation_detail": "Preserved hero gutters 80px desktop / 40px tablet / 24px mobile and 1280px max inner width; reset platform wrapper margins/padding."
+    },
+    {
+      "id": 10,
+      "amend": "Course/certification image and heading insets differ",
+      "decision": "Reference clarified; alignment fix implemented locally",
+      "reason": "User clarified that hover should extend outside the content alignment boundary.",
+      "next_step": "Verify image and section-heading alignment after applying updated CSS.",
+      "implementation_status": "Intellum visual verification pending",
+      "implementation_detail": "Outset homepage training/certification grids by card inset. Keep inner padding (16px desktop/tablet, capped at 15px mobile gutter). Remove nested certification text horizontal padding."
+    },
+    {
+      "id": 11,
+      "amend": "Uneven homepage section spacing",
+      "decision": "Approved for investigation and best-effort fixes",
+      "reason": "Mostly controlled by Intellum, but user authorizes trying to improve it.",
+      "next_step": "Inspect platform and custom styles; fix where safely controllable within our work and document any platform limitations. No guarantee of full standardization.",
+      "implementation_status": "Implemented locally from supplied homepage and platform stylesheet; rendered verification pending",
+      "implementation_detail": "Figma 939:2526 guides homepage section spacing: 80px tablet/desktop, 40px mobile matching embed section rhythm; 40px after hero. Source updated; rendered verification pending."
+    },
+    {
+      "id": 12,
+      "amend": "Uneven subhead-to-card spacing",
+      "decision": "Approved for investigation and best-effort fixes",
+      "reason": "Mostly controlled by Intellum, but user authorizes trying to improve it.",
+      "next_step": "Inspect platform and custom styles; fix where safely controllable within our work and document any platform limitations. No guarantee of full standardization.",
+      "implementation_status": "Implemented locally from supplied homepage and platform stylesheet; rendered verification pending",
+      "implementation_detail": "24px description-to-card spacing across native homepage sections and custom closing section via shared variable, matching Figma and embed lesson grids. Removed cumulative description/paragraph padding."
+    },
+    {
+      "id": 13,
+      "amend": "Uneven space above View All",
+      "decision": "Approved for investigation and best-effort fixes",
+      "reason": "Mostly controlled by Intellum, but user authorizes trying to improve it.",
+      "next_step": "Inspect platform and custom styles; fix where safely controllable within our work and document any platform limitations. No guarantee of full standardization.",
+      "implementation_status": "Implemented locally from supplied homepage and platform stylesheet; rendered verification pending",
+      "implementation_detail": "20px footer/View All top margin; removed list-bottom duplication."
+    },
+    {
+      "id": 14,
+      "amend": "Different gaps between cards",
+      "decision": "Approved for investigation and best-effort fixes",
+      "reason": "Mostly controlled by Intellum, but user authorizes trying to improve it.",
+      "next_step": "Inspect platform and custom styles; fix where safely controllable within our work and document any platform limitations. No guarantee of full standardization.",
+      "implementation_status": "Implemented locally from supplied homepage and platform stylesheet; rendered verification pending",
+      "implementation_detail": "Zero card gaps in homepage sections 203763, 208279 and 208277, Understand recommended learning cards, and Why certification path cards. Preserve internal padding and outward hover alignment. Other groups retain existing gaps. Rendered verification pending."
+    },
+    {
+      "id": 15,
+      "amend": "Different tablet side margins",
+      "decision": "Approved for investigation and best-effort fixes",
+      "reason": "Mostly controlled by Intellum, but user authorizes trying to improve it.",
+      "next_step": "Inspect platform and custom styles; fix where safely controllable within our work and document any platform limitations. No guarantee of full standardization.",
+      "implementation_status": "Implemented locally from supplied homepage and platform stylesheet; rendered verification pending",
+      "implementation_detail": "Homepage list/header/footer gutters unified at 15px mobile / 30px tablet; desktop and approved hero gutters retained."
+    },
+    {
+      "id": 16,
+      "amend": "Accelerator token box and sidebar padding",
+      "decision": "Will not implement — out of scope",
+      "reason": "User explicitly excluded this item from the agreed scope.",
+      "next_step": "No further work planned.",
+      "implementation_status": "Excluded by user"
+    },
+    {
+      "id": 17,
+      "amend": "Gray hover remains after mobile tap",
+      "decision": "Approved for work",
+      "next_step": "Separate pointer hover from keyboard focus styling to prevent sticky mobile hover while preserving visible keyboard focus.",
+      "implementation_status": "Implemented locally; Intellum visual and device verification pending",
+      "implemented_date": "2026-10-07",
+      "implementation_detail": "Custom gray card/row hover rules gated to hover-capable fine pointers. Keyboard focus-visible remains outside the media query."
+    },
+    {
+      "id": 18,
+      "amend": "Console error: Unexpected token '}'",
+      "decision": "Will not implement — out of scope",
+      "next_step": "No further work planned.",
+      "implementation_status": "Excluded by user",
+      "reason": "User explicitly excluded this item from the agreed scope."
+    },
+    {
+      "id": 19,
+      "amend": "Three pages return 404 when logged out",
+      "decision": "Fixed",
+      "reason": "User reports this issue is fixed.",
+      "implementation_status": "Reported fixed by user; not independently retested"
+    },
+    {
+      "id": 20,
+      "amend": "Homepage cards link to staging",
+      "decision": "Deferred to production migration",
+      "next_step": "Swap staging links to confirmed production destinations when moving to production.",
+      "implementation_status": "Deferred to go-live"
+    },
+    {
+      "id": 21,
+      "amend": "Feature-card colors, equal heights and CTA tint",
+      "decision": "Fixed",
+      "detail": "User confirms already fixed.",
+      "implementation_status": "Reported fixed by user"
+    },
+    {
+      "id": 22,
+      "amend": "Feature-card title contrast",
+      "decision": "Approved for work",
+      "detail": "Use #D82400 (OrangeRed Shade) for feature-card titles; preserve base orange elsewhere.",
+      "implementation_status": "Implemented in local files; pending Intellum visual verification",
+      "implemented_date": "2026-10-07",
+      "validation_note": "Requested #D82400 applied. Calculated contrast on #FFDAD7 is 3.90:1; does not reach 4.5:1 for current small text. Further color changes require a decision."
+    },
+    {
+      "id": 23,
+      "amend": "Outlined-button contrast on pink CTA banners",
+      "decision": "Approved for work",
+      "detail": "Use #D82400 for outlined-button text and borders on pink CTA banners.",
+      "implementation_status": "Implemented in local files; pending Intellum visual verification",
+      "implemented_date": "2026-10-07",
+      "validation_note": "Requested #D82400 applied. Calculated contrast on #FFDAD7 is 3.90:1; does not reach 4.5:1 for current small text. Further color changes require a decision."
+    },
+    {
+      "id": 24,
+      "amend": "FAQ answer-link contrast",
+      "decision": "Approved for work",
+      "detail": "Use #D82400 for FAQ answer links.",
+      "implementation_status": "Implemented in local files; pending Intellum visual verification",
+      "implemented_date": "2026-10-07",
+      "validation_note": "Calculated #D82400 on white contrast: 5.03:1."
+    },
+    {
+      "id": 25,
+      "amend": "Change body text to pure black",
+      "decision": "Will not implement",
+      "detail": "Retain #1C1C1C for consistency with the Intellum system.",
+      "implementation_status": "Not planned"
+    },
+    {
+      "id": 26,
+      "amend": "Toolkit divider and border gray",
+      "decision": "Approved within controlled scope",
+      "detail": "Change dividers and borders we control to #DEE1E3; do not expand to uncontrolled platform styling.",
+      "implementation_status": "Implemented in local files; pending Intellum visual verification",
+      "implemented_date": "2026-10-07"
+    },
+    {
+      "id": 27,
+      "amend": "Difficulty pill background",
+      "decision": "Approved for work",
+      "detail": "Use #F6F9FB to align with other site surfaces. This also selects the default surface gray for item 8; retain #DEE1E3 as the existing hover gray.",
+      "implementation_status": "Implemented in local files; pending Intellum visual verification",
+      "implemented_date": "2026-10-07"
+    },
+    {
+      "id": 28,
+      "amend": "Inconsistent feature-card title sizes",
+      "decision": "Approved for work",
+      "detail": "Normalize feature-card title sizes; remove the 17px first-card exception and use the existing 18px size consistently.",
+      "implementation_status": "Implemented in local files; pending Intellum visual verification",
+      "implemented_date": "2026-10-07"
+    },
+    {
+      "id": 29,
+      "amend": "Inconsistent feature icon sizes",
+      "decision": "Approved for work",
+      "detail": "Use 16px icon boxes consistently while preserving artwork aspect ratios.",
+      "implementation_status": "Implemented in local files; pending Intellum visual verification",
+      "implemented_date": "2026-10-07"
+    },
+    {
+      "id": 30,
+      "amend": "Inconsistent button heights",
+      "decision": "Approved for work",
+      "detail": "Centralize button height in a shared variable; use the proposed 36px minimum including borders for buttons we control, allowing growth if text wraps.",
+      "implementation_status": "Implemented in local files; pending Intellum visual verification",
+      "implemented_date": "2026-10-07",
+      "implementation_detail": "Shared 36px minimum applies to embed buttons and customized native Follow control; native platform-wide button changes remain excluded."
+    },
+    {
+      "id": 31,
+      "amend": "Uneven recommended Learning Paths cards",
+      "decision": "Approved for work",
+      "detail": "Stretch cards to equal height within each row and push duration/difficulty metadata to the bottom; preserve 16px inner padding and avoid fixed heights.",
+      "implementation_status": "Implemented locally; source checks passed; Intellum visual verification pending",
+      "implemented_date": "2026-10-07",
+      "implementation_detail": "Flex-column lesson cards stretch within each grid row; metadata margin-top:auto aligns final rows; images cannot shrink; 16px card padding retained."
+    },
+    {
+      "id": 32,
+      "amend": "Logged-out 404 reminder",
+      "decision": "Fixed",
+      "detail": "Duplicate of item 19; user confirms already fixed.",
+      "implementation_status": "Reported fixed by user"
+    }
+  ],
+  "review_status": "Item 10 clarified and updated locally; visual verification pending. Items 16 and 18 excluded. Item 20 deferred to production.",
+  "pending_inputs": [],
+  "delivery_note": "Previous Downloads/Reddit folder not present. Updated files are in working project; delivery copies were not synchronized.",
+  "additional_amends": [
+    {
+      "id": 33,
+      "amend": "Double hover on homepage certification cards (208277)",
+      "implementation_status": "Implemented locally; Intellum visual verification pending",
+      "implementation_detail": "Replaced nested hover backgrounds with a single outer-link surface; inner container and text panel transparent. Preserved padding, corners and keyboard focus.",
+      "implemented_date": "2026-10-08"
+    },
+    {
+      "id": 34,
+      "amend": "Align homepage section 208278 with other customized cards",
+      "decision": "Approved; supersedes earlier exception preserving native treatment",
+      "implementation_status": "Implemented locally; Intellum visual verification pending",
+      "implementation_detail": "Zero grid gaps, no borders or shadows, shared card padding and outward alignment, transparent inner panels and single gray outer hover; existing responsive column counts preserved."
+    },
+    {
+      "id": 35,
+      "amend": "Extend outward card alignment to Understand and Why embeds",
+      "implementation_status": "Implemented locally; visual verification pending",
+      "implementation_detail": "Recommended learning and certification grids use -16px inline margins to offset existing 16px card padding. Retains zero gaps and 700px main copy width; images align with section headings while hover extends into gutters."
+    },
+    {
+      "id": 36,
+      "amend": "Updated difficulty tags and feature titles/icons",
+      "implementation_status": "Implemented locally; rendered verification pending",
+      "implementation_detail": "Figma 759:2483: three 3px bars, 1.5px gaps, inactive bars #C6C9CA. Existing approved #F6F9FB pill retained. Understand/Why feature titles 19px; icons inherit title color."
+    },
+    {
+      "id": 37,
+      "amend": "Understand CTA outline button accessible hover",
+      "implementation_status": "Implemented locally; visual verification pending",
+      "implementation_detail": "Pointer hover and keyboard focus use #D82400 background with white text (5.03:1); keyboard outline #1C1C1C. Resting state unchanged."
+    },
+    {
+      "id": 38,
+      "amend": "Match Why get certified CTA outline hover to Understand",
+      "implementation_status": "Implemented locally; visual verification pending",
+      "implementation_detail": "Closing outline button uses shared #D82400 background and white text on pointer hover and keyboard focus; visible keyboard outline retained. Resting state unchanged."
+    },
+    {
+      "id": 39,
+      "amend": "Use translucent orange for both closing outline button hovers",
+      "implementation_status": "Implemented locally; visual verification pending",
+      "implementation_detail": "Supersedes solid hover in 37–38. Shared orange at 12% opacity over pink; #1C1C1C interaction text, #D82400 border. Calculated text contrast 11.57:1. Resting state unchanged."
+    },
+    {
+      "id": 40,
+      "amend": "Correct closing outline hover to translucent white",
+      "implementation_status": "Implemented locally; visual verification pending",
+      "implementation_detail": "Reverts item 39 orange overlay and dark text. Both CTA outline buttons use white at 65% opacity on hover/focus with #D82400 text and border. Contrast over #FFDAD7: 4.61:1. Shared variable --raf-cta-outline-hover; resting state unchanged."
+    },
+    {
+      "id": 41,
+      "amend": "Slight orange tint in closing outline hover fill",
+      "implementation_status": "Implemented locally; visual verification pending",
+      "implementation_detail": "Shared CTA hover fill rgb(255 248 245 / 80%), a near-white orange tint. Both pages inherit it. #D82400 text contrast over pink: 4.60:1."
+    },
+    {
+      "id": 42,
+      "amend": "Final seven stakeholder refinements",
+      "decision": "All seven approved including solid-white hover",
+      "implementation_status": "Implemented locally; Intellum visual verification pending",
+      "implementation_detail": [
+        "Closing homepage description-to-cards 40px; local card gap32px.",
+        "Native sections ending in cards use section-gap minus16px; sections with View all retain full section gap.",
+        "208278 nested text-panel bottom padding removed; outer16px retained.",
+        "Understand/Why first subsection and feature-grid spacing40px; padded image cards remain24+16px.",
+        "Beginner #65B200, Intermediate #08A59D, empty bars #DEE1E3; Advanced unchanged.",
+        "Both pink-banner outline hovers use solid white via shared token."
+      ]
+    },
+    {
+      "id": 43,
+      "amend": "Make supported native homepage card styling reusable across section IDs",
+      "decision": "Authorized by user to begin layout-based CSS refactor",
+      "implemented_date": "2026-10-13",
+      "implementation_status": "Implemented locally; offline computed-style checks passed; Intellum verification pending",
+      "implementation_detail": [
+        "Homepage stacked tabloid, 2x and 4x activity cards share class-based padding, gap, borders, outset alignment and appropriate hover treatment; recreated sections no longer need ID registration for these shared styles.",
+        "Stacked 2x tiles use one mobile column and two columns from 480px; stacked 4x tiles use one mobile column, two from 480px and four from 768px, identified by activity card layout classes.",
+        "Preserved ID configuration for special three-column training grids and full-width first cards in sections 203763 and 208279. Recreating those sections requires updating the special-layout IDs. New tabloid sections retain the native display/column arrangement.",
+        "Preserved legacy section 1430754 spacing and conditional hiding of native section 1434649. Unsupported and scroll layouts keep their previous rules. Removed superseded 208278 padding exclusion and overwritten gap/list-margin declarations.",
+        "Approved colors, hero layout, embed styles, links, and Custom Head unchanged."
+      ],
+      "validation_note": "Offline Chromium comparison of supplied section markup with a minimal platform fixture at 375, 767, 768, 991 and 1280px; existing computed styles and settled hover/focus match the prior CSS. Simulated new IDs preserve shared card styles and tile columns. Checked scroll, 3x, list, event and off-homepage boundaries. External tenant theme not loaded; supplied HTML does not confirm live Custom CSS matches the local baseline. Test record: validation/homepage-layout-results.json."
+    },
+    {
+      "id": 44,
+      "amend": "Remove legacy and superseded CSS",
+      "decision": "User authorized deletion of legacy or unused code",
+      "implemented_date": "2026-10-13",
+      "implementation_status": "Implemented locally; Intellum verification pending",
+      "implementation_detail": [
+        "Removed old 1430754 spacing and 1434649 conditional hiding rules; neither ID appears in the supplied current homepage. The replacement embed remains present. Any future duplicate native section must be managed in Intellum.",
+        "Removed unused --raf-card-gap token, superseded difficulty-dot pseudo-element and pill declarations, overridden native description padding, and duplicate card padding rules; merged adjacent identical stacked-card selector blocks.",
+        "Preserved active training arrangement IDs 203763 and 208279, global platform rules, Custom Head and all embed HTML. Global styling was not treated as unused solely because it is absent from the homepage.",
+        "Corrected HOMEPAGE-SETUP.md to match the current approved embed spacing, corners, padding, remaining section-ID exception and manual installation workflow."
+      ],
+      "validation_note": "Offline checks recorded in validation/homepage-cleanup-results.json; external tenant theme and live learner views remain unverified."
+    },
+    {
+      "id": 45,
+      "amend": "Standardize the training arrangement for all stacked tabloid homepage sections",
+      "decision": "User explicitly approved making the arrangement standard for all tabloid homepage sections",
+      "implemented_date": "2026-10-13",
+      "implementation_status": "Implemented locally; offline computed-style checks passed; Intellum verification pending",
+      "implementation_detail": [
+        "Replaced remaining catalog-section-ID selectors with homepage-scoped stacked tabloid activity-card selectors. Custom CSS now contains no data-catalog-section-id selectors.",
+        "All matching tabloid homepage sections use one column below 768px; from 768px, three columns with the first card spanning the full row. New or recreated matching sections inherit the arrangement automatically.",
+        "Supersedes the ID-based training arrangement retained in items 43 and 44. Existing approved training layouts, 2x/4x tile layouts, colors, embed HTML and Custom Head are preserved. Scroll/carousel, other layouts and off-homepage content retain their previous treatment.",
+        "Updated HOMEPAGE-SETUP.md to describe the standard class-based arrangement."
+      ],
+      "validation_note": "Offline Chromium comparison at 375, 767, 768, 991 and 1280px: existing sections retain computed styles and all supported arrangements survive simulated ID changes. New tabloid sections without any section-ID attribute checked with 1, 2, 4 and 7 cards at 375, 767, 768 and 1280px. Existing hover/focus and difficulty bars preserved. External tenant theme not loaded; live verification pending. Results: validation/homepage-standard-tabloid-results.json."
+    },
+    {
+      "id": 46,
+      "amend": "Consolidate CSS by component and centralize recurring native measurements",
+      "decision": "User approved scalability improvements 1 and 2",
+      "implemented_date": "2026-10-13",
+      "implementation_status": "Implemented locally; offline layout and component comparisons passed; Intellum verification pending",
+      "implementation_detail": [
+        "Organized full Custom CSS into eight component groups: shared tokens, native cards, navigation, metadata/difficulty, platform controls, landing wrappers, learning-path accordions and homepage layouts. Consolidated repeated exact selectors within their component and responsive context, removing duplicate declarations while preserving specificity and !important behavior.",
+        "Merged global token definitions into one :root block. Added --raf-card-padding (16px), --raf-section-gap-mobile (40px), --raf-home-gutter-mobile (15px), --raf-home-gutter-tablet (30px), --raf-heading-gap (4px), and --raf-motion-duration (160ms). Existing section, description, footer and color tokens retained.",
+        "Native card padding and final-card section-spacing compensation share --raf-card-padding. Mobile card outset remains capped to the mobile gutter. Native card/control transitions share --raf-motion-duration.",
+        "Media-query breakpoint conditions remain explicit because standard CSS custom properties cannot be used directly in those conditions. HTML embed styles, approved hero gutters, Custom Head and links were not changed. No catalog-section-ID selectors reintroduced.",
+        "HOMEPAGE-SETUP.md now documents component organization, recurring measurements, responsive boundaries, and native-versus-embed styling ownership."
+      ],
+      "validation_note": "Offline Chromium computed-style comparisons passed for current and renumbered homepage sections, new tabloid card counts, hover/focus, difficulty bars and selector boundaries. Additional full standard computed-property comparisons, including pseudo-elements, passed on homepage and representative platform fixtures at 375, 767, 768, 991, 992 and 1280px. Shared-token overrides propagate as expected. External tenant theme not loaded and live Intellum verification pending. Records: validation/css-consolidation-results.json and validation/css-component-results.json."
+    },
+    {
+      "id": 47,
+      "amend": "Align native styling and page embeds with the same shared design values",
+      "decision": "User requested alignment with the other pages wherever appropriate",
+      "implemented_date": "2026-10-13",
+      "implementation_status": "Implemented locally; offline comparisons passed; Intellum verification pending",
+      "implementation_detail": [
+        "Understand full and body-only variants, Why get certified, FAQ and both homepage embeds consume recurring shared measurements from Custom CSS while their layout selectors and responsive rules remain in HTML.",
+        "Shared card padding, card outset compensation, action/card-content gaps, motion duration, matching font stacks, reading/wide widths, recurring content spacing and approved hero gutters now have central tokens. Existing shared colors, card radius and button-height tokens remain in place.",
+        "Retained approved differences: native homepage desktop section rhythm 80px versus embed content flow 40px, page-specific artwork/banner sizing, existing breakpoints and differing text sizes/font mappings where appropriate. No platform-wide button-radius changes.",
+        "Synchronized the three standalone local previews. Updated HOMEPAGE-SETUP.md with shared design values, installation order and retained layout ownership. Links, copy, Custom Head and non-style markup remain unchanged."
+      ],
+      "validation_note": "Six embed variants compared at 375, 767, 768, 991, 1199 and 1280px using before/after local CSS: computed appearance preserved. Tested CTA, FAQ, homepage card/button hover/focus and shared padding/hero-gutter overrides. Non-style markup unchanged in all nine HTML files. Native homepage before/after comparison also passed. Records: validation/cross-page-token-results.json and validation/cross-page-native-results.json. External tenant theme not loaded; no live verification."
+    }
+  ]
+}
