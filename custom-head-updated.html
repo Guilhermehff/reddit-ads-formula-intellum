@@ -116,6 +116,42 @@
       button.setAttribute("data-follow-text-updated", "true");
     }
 
+    function jumpToTraining(event) {
+      // Keep normal browser behavior for modified clicks and unrelated links.
+      if (event.defaultPrevented || event.button !== 0 ||
+          event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      var element = event.target.nodeType === 1 ? event.target : event.target.parentElement;
+      var link = element && element.closest(".raf-home-hero a[data-raf-scroll-training]");
+      if (!link) return;
+      var heading = Array.from(document.querySelectorAll(
+        "#catalog_home_page .catalogcards__heading"
+      )).find(function (item) {
+        return item.textContent.replace(/\s+/g, " ").trim().toLowerCase() ===
+          "the right training for your team" && item.getClientRects().length &&
+          window.getComputedStyle(item).visibility !== "hidden";
+      });
+      // The HTML link remains the certification fallback if the section is absent.
+      if (!heading) return;
+      event.preventDefault();
+      var header = document.querySelector(".appheader");
+      var headerPosition = header && window.getComputedStyle(header).position;
+      var offset = header && /^(fixed|sticky)$/.test(headerPosition) ?
+        Math.max(0, header.getBoundingClientRect().bottom) : 0;
+      window.scrollTo({
+        top: Math.max(0, window.scrollY + heading.getBoundingClientRect().top - offset - 16),
+        behavior: "instant"
+      });
+      // Move keyboard/screen-reader focus to the destination without changing tab order.
+      var tabIndex = heading.getAttribute("tabindex");
+      if (tabIndex === null) {
+        heading.setAttribute("tabindex", "-1");
+        heading.addEventListener("blur", function () {
+          if (heading.getAttribute("tabindex") === "-1") heading.removeAttribute("tabindex");
+        }, { once: true });
+      }
+      heading.focus({ preventScroll: true });
+    }
+
     function apply() {
       if (!active) return;
       // Avoid observing our own label/class changes.
@@ -147,11 +183,13 @@
 
     window.redditAdsCustomizationsCleanup = function () {
       active = false;
+      document.removeEventListener("click", jumpToTraining);
       observer.disconnect();
       window.clearTimeout(timer);
       pendingLevels.clear();
       pendingButtons.clear();
     };
+    document.addEventListener("click", jumpToTraining);
     // One initial scan; subsequent batches inspect only changed subtrees/owners.
     collectSubtree(document.body);
     apply();

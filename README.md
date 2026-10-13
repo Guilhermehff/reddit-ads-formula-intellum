@@ -38,7 +38,7 @@ See [the homepage and shared-token guide](docs/HOMEPAGE-SETUP.md) for measuremen
 4. Check desktop, tablet and mobile learner views, keyboard focus, pointer hover and all links. Test a newly created/recreated tabloid section and representative company restrictions using Intellum's native settings.
 5. Record which commit was installed and whether staging or production verification passed. Do not label a local-only version as live verified.
 
-Icons are included directly in the HTML, certification images are embedded as PNG data, and difficulty bars are drawn with CSS; no separate artwork folders are required. Typography relies on the fonts and aliases configured in the tenant. Decorative placeholders remain in some files; replace them with approved hosted artwork when available. The Custom Head script scans once at initialization, then updates affected native difficulty labels and Follow buttons in deduplicated batches; it does not manage links or audience permissions.
+Icons are included directly in the HTML, certification images are embedded as PNG data, and difficulty circles are drawn with CSS alongside visible level labels; no separate artwork folders are required. Typography relies on the fonts and aliases configured in the tenant. Decorative placeholders remain in some files; replace them with approved hosted artwork when available. The Custom Head script scans once at initialization, then updates affected native difficulty labels and Follow buttons in deduplicated batches; it also routes the homepage hero CTA to the visible training section, with the HTML link providing the certification fallback. Audience permissions remain native Intellum settings.
 
 ## Versioning with GitHub Desktop
 

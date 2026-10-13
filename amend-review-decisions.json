@@ -431,6 +431,38 @@
       "implementation_status": "Implemented locally; Intellum visual verification pending",
       "implementation_detail": "The FAQ answer wrapper previously had padding:0 16px, setting bottom padding to zero. Updated its HTML-owned rule to zero top padding and shared --raf-card-padding (16px fallback) for horizontal and bottom padding. Paragraph resets retained; Custom CSS, links, copy and other embeds unchanged.",
       "validation_note": "Source rule checked. Paste the complete updated FAQ embed and verify expanded answers directly in Intellum; no live verification performed."
+    },
+    {
+      "id": 50,
+      "amend": "Update homepage hero title and jump CTA to the team-training section",
+      "decision": "User requested title “Reddit Ads training built for your team” and the client CTA change shown in the attachment",
+      "implemented_date": "2026-10-13",
+      "implementation_status": "Implemented locally; offline interaction checks passed; Intellum verification pending",
+      "implementation_detail": [
+        "Homepage hero title changed to the exact requested text. CTA label remains “Get your team started”.",
+        "Custom Head handles ordinary CTA activation by finding the visible native homepage heading “The right training for your team” at click time, scrolling with clearance for a detected fixed/sticky appheader and moving focus to the heading. No section ID is hardcoded and no native heading ID is replaced. The heading text is the targeting contract.",
+        "CTA href uses the existing staging Why get certified Path as a fallback if the target is absent/hidden or Custom Head is unavailable. Production fallback remains subject to confirmed migration links. Modified clicks retain ordinary browser link behavior.",
+        "CSS and other embeds unchanged. README and homepage setup guide document the required hero/Custom Head replacement and fallback behavior."
+      ],
+      "validation_note": "Temporary offline browser checks passed for title, ordinary activation, header clearance, heading focus and tabindex restoration on blur, recreated section IDs, hidden/missing/renamed targets, late replacement sections and modified clicks. Existing difficulty/Follow behavior checks also passed. No live Intellum verification performed."
+    },
+    {
+      "id": 51,
+      "amend": "Use a single colored circle in difficulty chips",
+      "decision": "User approved keeping a single colored circle after accessibility discussion; supersedes earlier bar indicators",
+      "implemented_date": "2026-10-13",
+      "implementation_status": "Implemented locally; Intellum visual verification pending",
+      "implementation_detail": "Native chips and Understand full/body-only and certification embeds now use one centered 12px circle via shared --raf-difficulty-dot-size. Visible Beginner/Intermediate/Advanced labels, approved colors, 24px chip height and current pill styling retained. Removed bar-shadow definitions and unused inactive-bar color. Circle remains decorative; level text communicates meaning independently of color.",
+      "validation_note": "Temporary offline computed-style checks confirmed native and embed chip labels, approved level colors, 24px pill height, centered 12px circles and no stacked shadows. No live Intellum verification performed."
+    },
+    {
+      "id": 52,
+      "amend": "Fully round difficulty chip corners",
+      "decision": "User explicitly requested completely rounded tag corners; supersedes earlier 4px chip corners only",
+      "implemented_date": "2026-10-13",
+      "implementation_status": "Implemented locally; Intellum visual verification pending",
+      "implementation_detail": "Shared --raf-tag-radius:999px applied to native difficulty chips and Understand full/body-only and certification embed chips. Preserves 24px height, 12px circle, labels, approved colors and spacing. Card corners remain governed by the separate unchanged --raf-card-radius token.",
+      "validation_note": "Verified source replacements target difficulty-chip wrappers only. Verify the saved learner view after manual Intellum replacement."
     }
   ]
 }

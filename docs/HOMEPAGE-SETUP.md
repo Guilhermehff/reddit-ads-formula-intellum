@@ -16,7 +16,7 @@ The old section 1430754 spacing rules and unused --raf-card-gap token have also 
 
 ## Maintaining the Custom CSS
 
-The stylesheet is organized into shared tokens, native cards, navigation, metadata/difficulty bars, platform controls, landing-page wrappers, learning-path accordions and homepage layout. Repeated selectors are consolidated within their component and responsive context. Selector specificity and required platform overrides are retained.
+The stylesheet is organized into shared tokens, native cards, navigation, metadata/difficulty chips, platform controls, landing-page wrappers, learning-path accordions and homepage layout. Repeated selectors are consolidated within their component and responsive context. Selector specificity and required platform overrides are retained.
 
 Edit shared design values in the opening `:root` block. The native sections and HTML embeds consume these values through their own scoped layout rules:
 
@@ -51,3 +51,12 @@ Install the complete updated Custom CSS before replacing the affected HTML embed
 Breakpoint values remain explicit in media queries because standard CSS custom properties cannot be used directly in media-query conditions. Keep the 767/768px and 991/992px boundaries paired if changing them.
 
 Local checks use supplied markup with a minimal platform fixture; the external tenant theme is not included. Replace the entire Custom CSS field manually, then verify the saved learner view, section recreation, links and audience restrictions in staging. Local edits and checks do not confirm live Intellum behavior.
+
+
+## Homepage hero CTA
+
+The hero title is “Reddit Ads training built for your team”. With the current Custom Head installed, “Get your team started” jumps to the visible native homepage heading “The right training for your team” and moves keyboard focus there. It resolves the heading at activation time, so section IDs and order can change. Keep that section heading text unchanged if this CTA should continue targeting it.
+
+If the section is absent, hidden, or the Custom Head script is unavailable, the HTML link opens the existing staging Why get certified Path. Update that fallback when production destinations are confirmed. Replace both the complete homepage hero HTML and Custom Head snippets, then check the behavior in Intellum.
+
+Difficulty chips use one decorative circle beside the visible Beginner, Intermediate or Advanced label. The shared `--raf-difficulty-dot-size` is 12px and `--raf-tag-radius` is 999px for fully rounded pills; approved colors and the 24px chip height remain unchanged. The text label communicates difficulty independently of color.

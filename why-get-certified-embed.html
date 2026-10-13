@@ -378,12 +378,12 @@
 .raf-cert .raf-hero-inner { margin:0 auto !important; padding:0 !important; }
 .raf-cert .raf-hero-copy { margin:0 !important; padding:0 !important; min-width:0; }
 
-/* Stacked difficulty bars aligned to the updated design. */
-.raf-cert .raf-level, .raf-cert .raf-cert-meta .raf-cert-difficulty { box-sizing:border-box !important; height:24px !important; padding:4px 6px 4px 4px !important; border-radius:4px !important; gap:6px; line-height:16px !important; --raf-level-dot:var(--raf-beginner-dot); --raf-level-bars:0 -4.5px 0 var(--raf-tag-inactive), 0 -9px 0 var(--raf-tag-inactive); }
-.raf-cert .raf-level::before, .raf-cert .raf-cert-difficulty::before { content:""; width:14px !important; height:3px !important; flex:0 0 14px !important; align-self:flex-end; margin:0 0 2px !important; border-radius:4px !important; background-color:var(--raf-level-dot) !important; -webkit-mask:none !important; mask:none !important; box-shadow:var(--raf-level-bars) !important; }
-.raf-cert .raf-cert-meta .raf-cert-difficulty--beginner { --raf-level-dot:var(--raf-beginner-dot); --raf-level-bars:0 -4.5px 0 var(--raf-tag-inactive), 0 -9px 0 var(--raf-tag-inactive); }
-.raf-cert .raf-cert-meta .raf-cert-difficulty--intermediate { --raf-level-dot:var(--raf-intermediate-dot); --raf-level-bars:0 -4.5px 0 var(--raf-level-dot), 0 -9px 0 var(--raf-tag-inactive); }
-.raf-cert .raf-cert-meta .raf-cert-difficulty--advanced { --raf-level-dot:var(--raf-advanced-dot); --raf-level-bars:0 -4.5px 0 var(--raf-level-dot), 0 -9px 0 var(--raf-level-dot); }
+/* Difficulty chips: decorative circle plus a visible text label. */
+.raf-cert .raf-level, .raf-cert .raf-cert-meta .raf-cert-difficulty { box-sizing:border-box !important; height:24px !important; padding:4px 6px 4px 4px !important; border-radius:var(--raf-tag-radius, 999px) !important; gap:6px; line-height:16px !important; --raf-level-dot:var(--raf-beginner-dot); }
+.raf-cert .raf-level::before, .raf-cert .raf-cert-difficulty::before { content:""; width:var(--raf-difficulty-dot-size, 12px) !important; height:var(--raf-difficulty-dot-size, 12px) !important; flex:0 0 var(--raf-difficulty-dot-size, 12px) !important; align-self:center; margin:0 !important; border-radius:50% !important; background-color:var(--raf-level-dot) !important; -webkit-mask:none !important; mask:none !important; box-shadow:none !important; }
+.raf-cert .raf-cert-meta .raf-cert-difficulty--beginner { --raf-level-dot:var(--raf-beginner-dot); }
+.raf-cert .raf-cert-meta .raf-cert-difficulty--intermediate { --raf-level-dot:var(--raf-intermediate-dot); }
+.raf-cert .raf-cert-meta .raf-cert-difficulty--advanced { --raf-level-dot:var(--raf-advanced-dot); }
 
 /* Align images with section copy; hover extends 16px into the outer gutter. */
 .raf-cert .raf-certifications { width:auto !important; max-width:none !important; margin-inline:calc(-1 * var(--raf-card-padding)) !important; }
