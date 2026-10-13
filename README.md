@@ -19,7 +19,6 @@ This repository is the source of truth for the custom Reddit Ads Formula homepag
 
 - Root HTML and CSS files are the complete paste-ready sources.
 - [docs/](docs/) contains installation and maintenance guides.
-- [previews/](previews/) contains standalone local previews. Open them in a browser; do not paste them into Intellum. They load `../custom-css-updated.css`.
 - [amend-review-decisions.json](amend-review-decisions.json) records approved changes, exclusions, superseding decisions and verification status.
 - `local-archive/` holds older snippets, notes, validation records and generated ZIPs on this computer. It is ignored by Git and is not part of the published source. Earlier reports referenced by the decision history can be found there locally.
 
@@ -39,10 +38,10 @@ See [the homepage and shared-token guide](docs/HOMEPAGE-SETUP.md) for measuremen
 4. Check desktop, tablet and mobile learner views, keyboard focus, pointer hover and all links. Test a newly created/recreated tabloid section and representative company restrictions using Intellum's native settings.
 5. Record which commit was installed and whether staging or production verification passed. Do not label a local-only version as live verified.
 
-Icons are included directly in the HTML, certification images are embedded as PNG data, and difficulty bars are drawn with CSS; no separate artwork folders are required. Typography relies on the fonts and aliases configured in the tenant. Decorative placeholders remain in some files; replace them with approved hosted artwork when available. The Custom Head script manages native difficulty labels and Follow text; it does not manage links or audience permissions.
+Icons are included directly in the HTML, certification images are embedded as PNG data, and difficulty bars are drawn with CSS; no separate artwork folders are required. Typography relies on the fonts and aliases configured in the tenant. Decorative placeholders remain in some files; replace them with approved hosted artwork when available. The Custom Head script scans once at initialization, then updates affected native difficulty labels and Follow buttons in deduplicated batches; it does not manage links or audience permissions.
 
 ## Versioning with GitHub Desktop
 
-Review the changed source files, create a descriptive commit, then push it to the private repository. Keep previews synchronized when editing their corresponding embed. Generated ZIPs are delivery copies and should not be committed.
+Review the changed source files, create a descriptive commit, then push it to the private repository. Generated ZIPs are delivery copies and should not be committed.
 
 This repository excludes the wider project's audit documents, temporary screenshots and unrelated working files. No package installation or build step is required to install the source files in Intellum.

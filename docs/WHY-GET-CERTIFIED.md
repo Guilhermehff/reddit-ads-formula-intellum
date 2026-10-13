@@ -10,4 +10,4 @@ Shared design values come from Custom CSS. Certification layout, markup, respons
 
 Icons and PNG image data are included directly in the HTML. If Intellum strips data-image URLs, extract the PNG from the HTML, upload it through the platform, and replace its source with the confirmed hosted URL. Fonts rely on the tenant's uploaded Reddit fonts and aliases.
 
-Use `previews/why-get-certified-preview.html` for local inspection. Local checks do not confirm live Intellum behavior.
+Check the saved certification page directly in Intellum. Standalone local previews are no longer maintained.

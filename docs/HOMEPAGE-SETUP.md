@@ -46,7 +46,7 @@ Edit shared design values in the opening `:root` block. The native sections and 
 
 Changing a token affects every native or embed rule that uses it and requires staging review. Shared values live in Custom CSS; embed selectors, layout structure, responsive rules and intentional exceptions remain inside each HTML embed. For example, desktop native homepage sections retain their 80px rhythm while embed content sections retain 40px flow spacing. Banner heights, artwork dimensions and differing heading sizes retain their approved page-specific values.
 
-Install the complete updated Custom CSS before replacing the affected HTML embeds. Update both homepage embeds, Understand (choose the full or body-only variant), Why get certified, and FAQ. Local preview files have been synchronized and are not intended for pasting into Intellum. Preserve any newer live copy or confirmed links when applying the local files; production link changes remain deferred.
+Install the complete updated Custom CSS before replacing the affected HTML embeds. Update both homepage embeds, Understand (choose the full or body-only variant), Why get certified, and FAQ. Standalone local previews have been removed; paste into Intellum and check the saved learner view directly. Preserve any newer live copy or confirmed links when applying the local files; production link changes remain deferred.
 
 Breakpoint values remain explicit in media queries because standard CSS custom properties cannot be used directly in media-query conditions. Keep the 767/768px and 991/992px boundaries paired if changing them.
 

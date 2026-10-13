@@ -6,6 +6,8 @@
 
 Multiple answers may remain open. The FAQ requires no custom JavaScript. Shared colors, fonts, reading width, hero gutters, row horizontal padding and transition timing come from Custom CSS; FAQ layout selectors remain in the HTML.
 
+Open answers retain 16px of space before the divider, using the shared card-padding variable for their bottom and horizontal padding.
+
 The approved hero image surface has 4px corners and uses a decorative placeholder. Replace the placeholder with approved hosted artwork when available. Preserve the existing `faq-hero-image` class and use meaningful alt text only when the image adds information beyond surrounding copy.
 
-Use `previews/faq-preview.html` for local inspection. Local checks do not confirm live Intellum behavior.
+Check the saved FAQ directly in Intellum. Standalone local previews are no longer maintained.

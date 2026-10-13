@@ -409,6 +409,28 @@
         "Synchronized the three standalone local previews. Updated HOMEPAGE-SETUP.md with shared design values, installation order and retained layout ownership. Links, copy, Custom Head and non-style markup remain unchanged."
       ],
       "validation_note": "Six embed variants compared at 375, 767, 768, 991, 1199 and 1280px using before/after local CSS: computed appearance preserved. Tested CTA, FAQ, homepage card/button hover/focus and shared padding/hero-gutter overrides. Non-style markup unchanged in all nine HTML files. Native homepage before/after comparison also passed. Records: validation/cross-page-token-results.json and validation/cross-page-native-results.json. External tenant theme not loaded; no live verification."
+    },
+    {
+      "id": 48,
+      "amend": "Optimize Custom Head updates and remove standalone previews",
+      "decision": "User approved incremental Custom Head updates and requested eliminating previews in favor of direct Intellum checking",
+      "implemented_date": "2026-10-13",
+      "implementation_status": "Implemented locally; script behavior checks passed; Intellum verification pending",
+      "implementation_detail": [
+        "Custom Head performs one initial candidate scan, then tracks only affected difficulty items and Follow buttons using deduplicated Sets and the existing 100ms batching interval. Text/state changes update their owner; inserted content is scanned within the added subtree; relevant container class changes refresh scope.",
+        "Preserved exact difficulty label matching, accessibility text, Following state handling, nested label support, SVG text exclusion, unrelated aria descriptions, tooltip removal, and observer disconnection during own changes. Added cleanup of managed difficulty styling when an item leaves its eligible scope. Reinitialization clears prior observer/timer/queues.",
+        "Removed all three standalone preview HTML files and the previews folder. README and page guides now direct visual checks to the saved learner view in Intellum. CSS and embed HTML unchanged."
+      ],
+      "validation_note": "Temporary offline browser checks passed for incremental updates, unrelated mutations causing zero label/button processing, batch deduplication, inserted/replaced elements, reused labels, container scope changes, type exclusions, nested Follow state labels, accessibility/tooltip description preservation, repeat initialization and cleanup cancellation. No preview pages or result reports added to the repository. Live Intellum verification pending."
+    },
+    {
+      "id": 49,
+      "amend": "Restore bottom spacing beneath FAQ answers",
+      "decision": "User reported missing answer-to-divider spacing and requested correction",
+      "implemented_date": "2026-10-13",
+      "implementation_status": "Implemented locally; Intellum visual verification pending",
+      "implementation_detail": "The FAQ answer wrapper previously had padding:0 16px, setting bottom padding to zero. Updated its HTML-owned rule to zero top padding and shared --raf-card-padding (16px fallback) for horizontal and bottom padding. Paragraph resets retained; Custom CSS, links, copy and other embeds unchanged.",
+      "validation_note": "Source rule checked. Paste the complete updated FAQ embed and verify expanded answers directly in Intellum; no live verification performed."
     }
   ]
 }

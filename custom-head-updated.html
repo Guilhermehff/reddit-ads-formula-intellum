@@ -5,103 +5,155 @@
   "use strict";
 
   function initialize() {
-    // Safe to initialize again if the platform reloads this customization.
     if (window.redditAdsCustomizationsCleanup) {
       window.redditAdsCustomizationsCleanup();
     }
 
     var timer;
+    var active = true;
     var levels = ["beginner", "intermediate", "advanced"];
+    var pendingLevels = new Set();
+    var pendingButtons = new Set();
+    var candidates = ".activitymeta__item, .followbutton, [data-level-tagged]";
     var observer = new MutationObserver(function (records) {
-      var relevant = records.some(function (record) {
-        if (record.type !== "attributes") return true;
-        if (record.attributeName === "data-category-following") return true;
-        return record.target.matches(".activitymeta__item, .followbutton");
+      records.forEach(function (record) {
+        // Text and state changes affect their owning item/button only.
+        collectOwner(record.target);
+        if (record.type === "childList") {
+          record.addedNodes.forEach(collectSubtree);
+          // A new/replaced adjacent tooltip can change the Follow description.
+          if (record.target.nodeType === 1 &&
+              record.target.matches(".categoryheader__actions")) {
+            collectSubtree(record.target);
+          }
+        } else if (record.type === "attributes" && record.attributeName === "class") {
+          // A platform container can gain/lose the classes that define our scope.
+          var oldClass = record.oldValue || "";
+          if (record.target.matches(".activitymeta, .categoryheader__actions") ||
+              /(?:^|\s)(?:activitymeta|categoryheader__actions)(?:\s|$)/.test(oldClass)) {
+            collectSubtree(record.target);
+          }
+          if (record.target.matches(candidates) ||
+              /(?:^|\s)(?:activitymeta__item|followbutton)(?:\s|$)/.test(oldClass)) {
+            queue(record.target);
+          }
+        }
       });
-      if (relevant) schedule();
+      schedule();
     });
 
-    function applyLevelTags() {
-      document.querySelectorAll(
+    function queue(element) {
+      if (element.matches(".activitymeta__item, [data-level-tagged]")) {
+        pendingLevels.add(element);
+      }
+      if (element.matches(".followbutton")) pendingButtons.add(element);
+    }
+
+    function collectOwner(node) {
+      var element = node.nodeType === 1 ? node : node.parentElement;
+      if (!element) return;
+      var item = element.closest(".activitymeta__item, [data-level-tagged]");
+      var button = element.closest(".followbutton");
+      if (item) pendingLevels.add(item);
+      if (button) pendingButtons.add(button);
+    }
+
+    function collectSubtree(node) {
+      if (node.nodeType !== 1) return;
+      queue(node);
+      node.querySelectorAll(candidates).forEach(queue);
+    }
+
+    function applyLevelTag(item) {
+      if (!item.isConnected) return;
+      var eligible = item.matches(
         ".activitymeta .activitymeta__item:not(.activitymeta__item--type)"
-      ).forEach(function (item) {
-        // Read the visible label without removing accessibility text from the page.
+      );
+      var level = null;
+      if (eligible) {
+        // Inspect a copy; preserve the learner's accessibility text.
         var label = item.cloneNode(true);
         label.querySelectorAll(".a11y-atonly, [aria-hidden='true']").forEach(function (node) {
           node.remove();
         });
         var text = label.textContent.replace(/\s+/g, " ").trim().toLowerCase();
-        // Accept the screen-reader Difficulty prefix used in activity headers.
         var match = text.match(/^(?:difficulty\s*:?\s*)?(beginner|intermediate|advanced)$/);
-        var level = match ? match[1] : null;
-        var managed = item.hasAttribute("data-level-tagged");
-        if (!level && !managed) return;
-
-        levels.forEach(function (name) {
-          item.classList.toggle("activitymeta__item--" + name, name === level);
-        });
-        item.classList.toggle("activitymeta__item--level", Boolean(level));
-        if (level) item.setAttribute("data-level-tagged", "true");
-        else item.removeAttribute("data-level-tagged");
+        level = match ? match[1] : null;
+      }
+      if (!level && !item.hasAttribute("data-level-tagged")) return;
+      levels.forEach(function (name) {
+        item.classList.toggle("activitymeta__item--" + name, name === level);
       });
+      item.classList.toggle("activitymeta__item--level", Boolean(level));
+      if (level) item.setAttribute("data-level-tagged", "true");
+      else item.removeAttribute("data-level-tagged");
     }
 
-    function updateFollowButtons() {
-      document.querySelectorAll(".categoryheader__actions .followbutton").forEach(function (button) {
-        var state = button.getAttribute("data-category-following");
-        var following = state === "true" ||
-          (state === null && button.classList.contains("followbutton--following"));
-        var label = following ? "Following" : "Follow for updates";
-        var walker = document.createTreeWalker(button, NodeFilter.SHOW_TEXT);
-        var node;
-        while ((node = walker.nextNode())) {
-          if (node.parentElement.closest("svg")) continue;
-          if (/^(Follow|Follow for updates|Following)$/.test(node.textContent.trim())) {
-            if (node.textContent.trim() !== label) node.textContent = label;
-          }
+    function updateFollowButton(button) {
+      if (!button.isConnected || !button.matches(".categoryheader__actions .followbutton")) return;
+      var state = button.getAttribute("data-category-following");
+      var following = state === "true" ||
+        (state === null && button.classList.contains("followbutton--following"));
+      var label = following ? "Following" : "Follow for updates";
+      var walker = document.createTreeWalker(button, NodeFilter.SHOW_TEXT);
+      var node;
+      while ((node = walker.nextNode())) {
+        if (node.parentElement.closest("svg")) continue;
+        if (/^(Follow|Follow for updates|Following)$/.test(node.textContent.trim())) {
+          if (node.textContent.trim() !== label) node.textContent = label;
         }
+      }
 
-        // Remove only the tooltip reference; retain unrelated descriptions.
-        var tooltip = button.nextElementSibling;
-        if (tooltip && tooltip.classList.contains("hint--a11y") && tooltip.id) {
-          var descriptions = (button.getAttribute("aria-describedby") || "")
-            .split(/\s+/).filter(function (id) { return id && id !== tooltip.id; });
-          if (descriptions.length) button.setAttribute("aria-describedby", descriptions.join(" "));
-          else button.removeAttribute("aria-describedby");
-        }
-        button.removeAttribute("data-hint");
-        button.classList.remove("hint", "hint--top", "hint--delay", "hint--desktoponly");
-        button.setAttribute("data-follow-text-updated", "true");
-      });
+      var tooltip = button.nextElementSibling;
+      if (tooltip && tooltip.classList.contains("hint--a11y") && tooltip.id) {
+        var descriptions = (button.getAttribute("aria-describedby") || "")
+          .split(/\s+/).filter(function (id) { return id && id !== tooltip.id; });
+        if (descriptions.length) button.setAttribute("aria-describedby", descriptions.join(" "));
+        else button.removeAttribute("aria-describedby");
+      }
+      button.removeAttribute("data-hint");
+      button.classList.remove("hint", "hint--top", "hint--delay", "hint--desktoponly");
+      button.setAttribute("data-follow-text-updated", "true");
     }
 
     function apply() {
-      // Our own label and class changes must not retrigger the observer.
+      if (!active) return;
+      // Avoid observing our own label/class changes.
       observer.disconnect();
+      var items = Array.from(pendingLevels);
+      var buttons = Array.from(pendingButtons);
+      pendingLevels.clear();
+      pendingButtons.clear();
       try {
-        applyLevelTags();
-        updateFollowButtons();
+        items.forEach(applyLevelTag);
+        buttons.forEach(updateFollowButton);
       } finally {
         observer.observe(document.body, {
           childList: true,
           subtree: true,
           characterData: true,
           attributes: true,
-          attributeFilter: ["data-category-following", "class"]
+          attributeOldValue: true,
+          attributeFilter: ["data-category-following", "class", "aria-hidden", "aria-describedby", "data-hint"]
         });
       }
     }
 
     function schedule() {
-      // Coalesce changes without postponing updates indefinitely.
-      if (timer) return;
+      if (!active || timer || (!pendingLevels.size && !pendingButtons.size)) return;
+      // Deduplicate affected elements and coalesce changes into one bounded batch.
       timer = window.setTimeout(function () { timer = null; apply(); }, 100);
     }
 
     window.redditAdsCustomizationsCleanup = function () {
+      active = false;
       observer.disconnect();
       window.clearTimeout(timer);
+      pendingLevels.clear();
+      pendingButtons.clear();
     };
+    // One initial scan; subsequent batches inspect only changed subtrees/owners.
+    collectSubtree(document.body);
     apply();
   }
 
