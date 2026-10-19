@@ -19,7 +19,8 @@
   --raf-tag-text: var(--raf-black);
   --raf-difficulty-dot-size: 12px;
   --raf-tag-radius: 999px;
-  --raf-tag-padding-right: 12px;
+  --raf-tag-padding-right: 10px;
+  --raf-tag-margin-right: 8px;
   --raf-tag-padding-left: 4px;
   --raf-tag-padding-block: 4px;
   --raf-tag-height: 24px;
@@ -438,7 +439,7 @@
   box-sizing: border-box !important;
   width: fit-content;
   height: var(--raf-tag-height) !important;
-  margin: 0 !important;
+  margin: 0 var(--raf-tag-margin-right) 0 0 !important;
   padding: var(--raf-tag-padding-block) var(--raf-tag-padding-right) var(--raf-tag-padding-block) var(--raf-tag-padding-left) !important;
   border-radius: var(--raf-tag-radius) !important;
   gap: var(--raf-tag-gap);
