@@ -38,8 +38,8 @@
 .raf-embed .raf-lesson h3 { font-size:17px; margin:16px 0 8px; }
 
 .raf-embed .raf-meta { display:flex; flex-wrap:wrap; align-items:center; gap:16px; font-size:12px; font-weight:700; }
-.raf-embed .raf-level { display:inline-flex; align-items:center; gap:6px; padding:2px 6px; border-radius:100px; }
-.raf-embed .raf-level::before { content:""; width:8px; height:8px; border-radius:50%; }
+
+
 .raf-embed .raf-cta { background:var(--raf-orange-tint); padding:64px 24px; text-align:center; }
 .raf-embed .raf-cta-inner { max-width:760px; margin:0 auto; }
 .raf-embed .raf-cta h2 { font-size:clamp(28px,3.3vw,40px); margin-bottom:16px; }
@@ -161,7 +161,7 @@
   line-height:1.1 !important;
   gap:16px !important;
 }
-.raf-embed .raf-level { line-height:16px !important; padding:2px 6px 2px 4px !important; }
+
 .raf-embed .raf-cta { padding:64px 24px !important; }
 .raf-embed .raf-cta-inner { max-width:var(--raf-reading-width) !important; }
 .raf-embed .raf-cta h2 { font-size:40px !important; margin:0 0 16px !important; }
@@ -304,14 +304,9 @@
 /* Intellum gives rich-text divs a 40px bottom margin. Reset the embed wrapper. */
 .raf-embed { margin: 0 !important; padding: 0 !important; }
 
-/* Difficulty pills aligned with the shared brand palette. */
-.raf-embed .raf-level { background-color:var(--raf-beginner-background) !important; color:var(--raf-beginner-foreground) !important; }
-.raf-embed .raf-level::before { background-color:var(--raf-beginner-dot) !important; }
 
 
-/* Difficulty tags match the shared Figma component. */
-.raf-embed .raf-level, .raf-embed .raf-cert-meta .raf-cert-difficulty { padding:2px 6px 2px 4px !important; gap:6px; font-family:var(--raf-font-display) !important; font-size:12px !important; font-weight:700; line-height:16px !important; white-space:nowrap; }
-.raf-embed .raf-level::before, .raf-embed .raf-cert-difficulty::before { width:12px; height:12px; flex:0 0 12px; }
+
 
 /* Reviewed component sizing and scoped readable orange. */
 .raf-embed .raf-feature h3 { font-size:19px !important; color:var(--raf-orange-readable) !important; }
@@ -327,12 +322,10 @@
 .raf-embed .raf-lessons { align-items:stretch; }
 .raf-embed a.raf-lesson > :is(.raf-placeholder,.raf-image) { flex-shrink:0; width:100%; }
 
-/* Difficulty chips: decorative circle plus a visible text label. */
-.raf-embed .raf-level, .raf-embed .raf-cert-meta .raf-cert-difficulty { box-sizing:border-box !important; height:24px !important; padding:4px 6px 4px 4px !important; border-radius:var(--raf-tag-radius, 999px) !important; gap:6px; line-height:16px !important; --raf-level-dot:var(--raf-beginner-dot); }
-.raf-embed .raf-level::before, .raf-embed .raf-cert-difficulty::before { content:""; width:var(--raf-difficulty-dot-size, 12px) !important; height:var(--raf-difficulty-dot-size, 12px) !important; flex:0 0 var(--raf-difficulty-dot-size, 12px) !important; align-self:center; margin:0 !important; border-radius:50% !important; background-color:var(--raf-level-dot) !important; -webkit-mask:none !important; mask:none !important; box-shadow:none !important; }
-.raf-embed .raf-cert-meta .raf-cert-difficulty--beginner { --raf-level-dot:var(--raf-beginner-dot); }
-.raf-embed .raf-cert-meta .raf-cert-difficulty--intermediate { --raf-level-dot:var(--raf-intermediate-dot); }
-.raf-embed .raf-cert-meta .raf-cert-difficulty--advanced { --raf-level-dot:var(--raf-advanced-dot); }
+
+
+
+
 
 /* Align images with section copy; hover extends 16px into the outer gutter. */
 .raf-embed .raf-lessons { width:auto !important; max-width:none !important; margin-inline:calc(-1 * var(--raf-card-padding)) !important; }

@@ -19,6 +19,13 @@
   --raf-tag-text: var(--raf-black);
   --raf-difficulty-dot-size: 12px;
   --raf-tag-radius: 999px;
+  --raf-tag-padding-right: 12px;
+  --raf-tag-padding-left: 4px;
+  --raf-tag-padding-block: 4px;
+  --raf-tag-height: 24px;
+  --raf-tag-gap: 6px;
+  --raf-tag-font-size: 12px;
+  --raf-tag-line-height: 16px;
   --raf-beginner-dot: #65b200;
   --raf-intermediate-dot: #08a59d;
   --raf-advanced-dot: var(--raf-orange);
@@ -419,26 +426,41 @@
   align-items: center;
 }
 
-/* Difficulty chips: decorative circle plus a visible text label. */
-.activitymeta .activitymeta__item--level {
-  /* Roboto is the platform's uploaded Reddit Display font mapping. */
-  display: inline-flex;
+/* Difficulty tags: this is the only styling source for native and embedded tags.
+   Embed HTML supplies level classes and visible labels, with no tag CSS. */
+.activitymeta .activitymeta__item--level,
+.raf-embed .raf-level,
+.raf-embed .raf-cert-meta .raf-cert-difficulty,
+.raf-cert .raf-level,
+.raf-cert .raf-cert-meta .raf-cert-difficulty {
+  display: inline-flex !important;
   align-items: center;
-  width: fit-content;
-  font-family: 'Roboto', 'Reddit Display', Arial, sans-serif;
-  font-weight: 700;
-  font-size: 12px;
   box-sizing: border-box !important;
-  height: 24px !important;
-  padding: 4px 6px 4px 4px !important;
+  width: fit-content;
+  height: var(--raf-tag-height) !important;
+  margin: 0 !important;
+  padding: var(--raf-tag-padding-block) var(--raf-tag-padding-right) var(--raf-tag-padding-block) var(--raf-tag-padding-left) !important;
   border-radius: var(--raf-tag-radius) !important;
-  gap: 6px;
-  line-height: 16px !important;
-  --raf-level-dot: var(--raf-beginner-dot);
-
+  gap: var(--raf-tag-gap);
+  font-family: var(--raf-font-display) !important;
+  font-size: var(--raf-tag-font-size) !important;
+  font-weight: 700;
+  line-height: var(--raf-tag-line-height) !important;
+  white-space: nowrap;
+  background-color: var(--raf-level-background, var(--raf-beginner-background)) !important;
+  color: var(--raf-level-text, var(--raf-beginner-foreground)) !important;
 }
 
-.activitymeta .activitymeta__item--level::before {
+/* Preserve the existing Intellum font alias for native metadata. */
+.activitymeta .activitymeta__item--level {
+  font-family: 'Roboto', 'Reddit Display', Arial, sans-serif !important;
+}
+
+.activitymeta .activitymeta__item--level::before,
+.raf-embed .raf-level::before,
+.raf-embed .raf-cert-meta .raf-cert-difficulty::before,
+.raf-cert .raf-level::before,
+.raf-cert .raf-cert-meta .raf-cert-difficulty::before {
   content: "";
   width: var(--raf-difficulty-dot-size) !important;
   height: var(--raf-difficulty-dot-size) !important;
@@ -446,31 +468,28 @@
   align-self: center;
   margin: 0 !important;
   border-radius: 50% !important;
-  background-color: var(--raf-level-dot) !important;
+  background-color: var(--raf-level-dot, var(--raf-beginner-dot)) !important;
   -webkit-mask: none !important;
   mask: none !important;
   box-shadow: none !important;
 }
 
-.activitymeta .activitymeta__item--beginner {
-  background-color: var(--raf-beginner-background);
-  color: var(--raf-beginner-foreground);
-  --raf-level-dot: var(--raf-beginner-dot);
+/* Unmodified embed labels default to the Beginner palette above. */
 
-}
-
-.activitymeta .activitymeta__item--intermediate {
-  background-color: var(--raf-intermediate-background);
-  color: var(--raf-intermediate-foreground);
+.activitymeta .activitymeta__item--intermediate,
+.raf-embed :is(.raf-level--intermediate, .raf-cert-difficulty--intermediate),
+.raf-cert :is(.raf-level--intermediate, .raf-cert-difficulty--intermediate) {
   --raf-level-dot: var(--raf-intermediate-dot);
-
+  --raf-level-background: var(--raf-intermediate-background);
+  --raf-level-text: var(--raf-intermediate-foreground);
 }
 
-.activitymeta .activitymeta__item--advanced {
-  background-color: var(--raf-advanced-background);
-  color: var(--raf-advanced-foreground);
+.activitymeta .activitymeta__item--advanced,
+.raf-embed :is(.raf-level--advanced, .raf-cert-difficulty--advanced),
+.raf-cert :is(.raf-level--advanced, .raf-cert-difficulty--advanced) {
   --raf-level-dot: var(--raf-advanced-dot);
-
+  --raf-level-background: var(--raf-advanced-background);
+  --raf-level-text: var(--raf-advanced-foreground);
 }
 
 /* === Follow, login and platform action controls === */

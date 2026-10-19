@@ -463,6 +463,28 @@
       "implementation_status": "Implemented locally; Intellum visual verification pending",
       "implementation_detail": "Shared --raf-tag-radius:999px applied to native difficulty chips and Understand full/body-only and certification embed chips. Preserves 24px height, 12px circle, labels, approved colors and spacing. Card corners remain governed by the separate unchanged --raf-card-radius token.",
       "validation_note": "Verified source replacements target difficulty-chip wrappers only. Verify the saved learner view after manual Intellum replacement."
+    },
+    {
+      "id": 53,
+      "amend": "Increase difficulty-tag right padding to 12px",
+      "decision": "User requested 12px right padding",
+      "implemented_date": "2026-10-19",
+      "implementation_status": "Implemented locally; Intellum visual verification pending",
+      "implementation_detail": "Shared --raf-tag-padding-right:12px applied to native tags and Understand full/body-only and certification embed tags. Top, bottom and left padding remain 4px; rounded corners, 24px height, circle, colors and labels retained.",
+      "validation_note": "Source changes verified to affect only difficulty-tag right padding. Complete updated files require manual pasting and verification in Intellum."
+    },
+    {
+      "id": 54,
+      "amend": "Make Custom CSS the sole owner of all difficulty-tag styling",
+      "decision": "User explicitly requested all difficulty-tag styling in Custom CSS, superseding the earlier embed-styling separation for this shared component",
+      "implemented_date": "2026-10-19",
+      "implementation_status": "Implemented locally; offline style checks passed; Intellum verification pending",
+      "implementation_detail": [
+        "Removed every difficulty-tag rule from Understand full/body-only and Why get certified embed style blocks. HTML labels and level classes remain unchanged.",
+        "Unified native and embedded tag rules in Custom CSS: sizing, padding, typography, colors, circle, radius and per-level states. Added shared height, padding, gap and type-size tokens; preserves 12px right padding, 4px other padding, 24px height, 12px circle, rounded corners and approved colors. Native font alias retained through CSS.",
+        "After one-time installation of the cleaned embeds, future difficulty-tag styling changes require Custom CSS only. Other page layout styles remain in HTML. Updated README and shared-system guide."
+      ],
+      "validation_note": "Temporary offline browser comparisons preserved existing tag appearance in all three embed variants at 375, 768 and 1280px. Verified unchanged non-style markup and absence of tag rules in embed styles. Verified native/embed level colors, 12px right padding, rounded corners and CSS-only overrides of height, font size, dot size, radius and right padding. No live verification and no preview/report files added."
     }
   ]
 }

@@ -24,7 +24,7 @@ This repository is the source of truth for the custom Reddit Ads Formula homepag
 
 ## Styling system
 
-Shared colors, typography and recurring measurements live in the opening `:root` block of Custom CSS. Platform container overrides and native components also live in Custom CSS. Embed selectors, layout structure, responsive rules and page-specific differences remain inside each HTML embed.
+Shared colors, typography and recurring measurements live in the opening `:root` block of Custom CSS. Platform container overrides and native components also live in Custom CSS. Page layout selectors, structure, responsive rules and page-specific differences remain inside each HTML embed. Difficulty tags are a shared component: all their styling, including embedded tags, lives exclusively in Custom CSS; their HTML supplies only labels and level classes.
 
 Supported native stacked homepage layouts use card classes rather than section IDs. Tabloid sections use one column below 768px and three columns with a full-width first card from 768px. Existing 2x and 4x tile arrangements also follow layout classes. Other layout types retain their established treatment.
 
