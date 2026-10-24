@@ -503,6 +503,15 @@
       "implementation_status": "Implemented locally; Intellum verification pending",
       "implementation_detail": "Added shared --raf-tag-margin-right:8px and applied it to the common native/embed difficulty-tag wrapper. Other margins stay zero. Existing 8px internal right padding is retained; surrounding metadata gaps remain unchanged. Embed HTML unchanged.",
       "validation_note": "Verified the shared margin declaration and the scoped consuming rule. Manual Custom CSS replacement and learner-view verification pending."
+    },
+    {
+      "id": 57,
+      "amend": "Update homepage hero heading",
+      "decision": "User supplied the replacement heading",
+      "implemented_date": "2026-10-19",
+      "implementation_status": "Implemented locally; Intellum verification pending",
+      "implementation_detail": "Changed the homepage hero heading to “Build the skills behind stronger Reddit campaigns”. Preserved heading markup, styling, CTA label and training-section jump/fallback behavior. Updated the homepage guide.",
+      "validation_note": "Verified exact source text replacement. Replace the complete homepage hero HTML and verify the saved learner view."
     }
   ]
 }

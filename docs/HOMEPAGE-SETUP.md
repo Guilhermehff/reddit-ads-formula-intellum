@@ -55,7 +55,7 @@ Local checks use supplied markup with a minimal platform fixture; the external t
 
 ## Homepage hero CTA
 
-The hero title is “Reddit Ads training built for your team”. With the current Custom Head installed, “Get your team started” jumps to the visible native homepage heading “The right training for your team” and moves keyboard focus there. It resolves the heading at activation time, so section IDs and order can change. Keep that section heading text unchanged if this CTA should continue targeting it.
+The hero title is “Build the skills behind stronger Reddit campaigns”. With the current Custom Head installed, “Get your team started” jumps to the visible native homepage heading “The right training for your team” and moves keyboard focus there. It resolves the heading at activation time, so section IDs and order can change. Keep that section heading text unchanged if this CTA should continue targeting it.
 
 If the section is absent, hidden, or the Custom Head script is unavailable, the HTML link opens the existing staging Why get certified Path. Update that fallback when production destinations are confirmed. Replace both the complete homepage hero HTML and Custom Head snippets, then check the behavior in Intellum.
 
